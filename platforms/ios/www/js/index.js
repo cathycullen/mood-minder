@@ -35,14 +35,13 @@ var app = {
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
         alert("Hello from Mood Minder!");
+        $.get("http://localhost:4567/testing-get", null, function(resp) {
+          alert(resp);
+        });
 
-        //$.get("http://localhost:4567/testing-get", {name: "Nate"}, function(resp) {
-        //  alert(resp);
-        //});
-
-        //$.post("http://localhost:4567/testing-post", {season: "summer"}, function(resp) {
-        //  alert(resp);
-        //});
+        $.post("http://localhost:4567/testing-post", null, function(resp) {
+          alert(resp);
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
