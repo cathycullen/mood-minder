@@ -42,11 +42,11 @@
 							<h4 style="margin-bottom:10px;">How Are You Feeling?</h4>
 							<div class="row-fluid">
 								<div class="span6">
-									<input type="text" id="mood"placeholder="Your Current State" >
+									<input type="text" id="mood"  name="mood" placeholder="Your Current State" >
 								</div>
 							</div>
 							<div style="margin-top: 50px;">
-								<label>Origin</label> <select name="origin">
+								<label>Origin</label> <select name="origin" id="origin">
 									<option value="Internal">Internal</option>
 									<option value="External">External</option>
 								</select>
@@ -58,13 +58,21 @@
         </div>
 
 
-        <script type="text/javascript" src="phonegap.js"></script>
+        <!-- <script type="text/javascript" src="phonegap.js"></script> -->
         <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
 				<script src="js/typeahead.bundle.js"></script>
 				<script src="js/mood_matcher.js"></script>
         <script type="text/javascript">
             app.initialize();
+						
+						$(document).ready(function() {
+							$('#submit_mood').click(function(evt) {
+								evt.preventDefault();
+								var mood = $('#moodForm').toObject();
+								var mood_text = $('#mood');
+							});
+						});
         </script>
     </body>
 </html>

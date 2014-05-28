@@ -1390,6 +1390,7 @@
         function Typeahead(o) {
             var $menu, $input, $hint;
             o = o || {};
+           console.log("input into Typeahead "+o);
             if (!o.input) {
                 $.error("missing input");
             }
