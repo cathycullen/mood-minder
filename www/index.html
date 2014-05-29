@@ -30,49 +30,43 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-					<h1>PhoneGap</h1>
-					<div id="deviceready" class="blink">
-							<p class="event listening">Connecting to Device</p>
-							<p class="event received">Device is Ready</p>
-					</div>
-					<div class="container" >
-						<form id="moodForm">
-							<h1 style="margin-bottom:10px;">Mood Minder</h1>
-							<h4 style="margin-bottom:10px;">How Are You Feeling?</h4>
-							<div class="row-fluid">
-								<div class="span6">
-									<input type="text" id="mood"  name="mood" placeholder="Your Current State" >
-								</div>
-							</div>
-							<div style="margin-top: 50px;">
-								<label>Origin</label> <select name="origin" id="origin">
-									<option value="Internal">Internal</option>
-									<option value="External">External</option>
-								</select>
-							</div>
-							
-							<button type="submit" id="submit_mood" class="btn btn-success" title="">Submit</button>
-							</form>
-					</div>
-        </div>
-
-
-        <!-- <script type="text/javascript" src="phonegap.js"></script> -->
-        <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-				<script src="js/typeahead.bundle.js"></script>
-				<script src="js/mood_matcher.js"></script>
-        <script type="text/javascript">
-            app.initialize();
+			<main id = "moodPage">	
+				<h1>Mood Minder</h1>
+				<!--
+				<div id="deviceready" class="blink">
+						<p class="event listening">Connecting to Device</p>
+						<p class="event received">Device is Ready</p>
+				</div>
+				-->
+				<div class="container" >
+					<form id="moodForm">
+						<h4 style="margin-bottom:10px;">How Are You Feeling?</h4>
+								<input type="text" id="mood"  name="mood" placeholder="Your Current State" >
+						<div id="mood-origin" >
+							<label>What is the Origin of this feeling?</label> <select name="origin" id="origin">
+								<option value="Internal">Internal</option>
+								<option value="External">External</option>
+							</select>
+						</div>
 						
-						$(document).ready(function() {
-							$('#submit_mood').click(function(evt) {
-								evt.preventDefault();
-								var mood = $('#moodForm').toObject();
-								var mood_text = $('#mood');
-							});
-						});
-        </script>
+						<button type="submit" id="submit_mood" class="btn btn-success" title="">Submit</button>
+						</form>
+				</div>
+			</main>
+
+
+			<!-- <script type="text/javascript" src="phonegap.js"></script> -->
+			<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+			<script type="text/javascript" src="js/index.js"></script>
+			<script src="js/typeahead.bundle.js"></script>
+			<script src="js/mood_matcher.js"></script>
+			<script src="js/mood_controller.js"></script>
+			<script type="text/javascript">
+					app.initialize();
+					moodController.initialize($('#moodPage'));
+					
+					
+
+			</script>
     </body>
 </html>
