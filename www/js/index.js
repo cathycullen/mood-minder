@@ -36,7 +36,27 @@ var app = {
         app.receivedEvent('deviceready');
         alert("Hello from Mood Minder!");
         console.log("onDeviceReady");
-    },
+
+
+        //window.currentUser = null;
+        //var request = $.ajax({
+        //                url: "/currentUser",
+        //                method: "GET",
+        //                dataType: "JSON"
+        //              });
+
+        //request.done(function(resp) {
+        //  currentUser = resp; // {id: 4, email: "nate@natedelage.com", role: "client"};
+        //                      // {};
+
+        //  if(currentUser.id) {
+        //    $("#moodForm").show();
+        //  } else {
+        //    $("#login").show();
+        //  }
+        //});
+
+},
     // Update DOM on a Received Event
     receivedEvent: function(id) {
         var parentElement = document.getElementById(id);
