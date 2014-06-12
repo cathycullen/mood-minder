@@ -21,15 +21,21 @@
       };
     };
     // get mood states from server and populate type ahead choices.
-    var mood_states = [];
-    
+    var mood_states = ['Angry', 'Annoyed', 'Apathetic', 'Blah', 'Blisful', 'Bored', 'Calm', 'Cheerful',
+      'Content', 'Confused', 'Cranky', 'Crappy', 'Disappointed',
+      'Drained', 'Ecstatic', 'Energetic', 'Frustrated', 'Grateful', 'Happy', 'Grateful', 'Hopeful', 'Indifferent',
+      'Irritated', 'Jealous', 'Lazy', 'Lethargic', 'Mellow',
+      'Numb', 'Optimistic', 'Pessimistic', 'Quixotic', 'Relaxed',
+      'Sad', 'Stressed', 'Tired', 'Uncomfortable', 'Wierd', 
+    ];
+    /*
     var server_mood_states = $.get( "http://localhost:4567/mood-states", function(resp) {
       console.log( "get mood_states" );
     })
     .fail(function(resp) {
       alert( "Error.  Call to http://localhost:4567/mood-states failed." );
     })
-    
+
     server_mood_states.always(function(resp) {
       mood_states = JSON.parse(resp);
       console.log( "mood_states finished "+mood_states );
@@ -44,5 +50,7 @@
         source: substringMatcher(mood_states)
       });
     });
+    
+    */
      
     

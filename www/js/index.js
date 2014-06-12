@@ -34,37 +34,30 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        alert("Hello from Mood Minder!");
         console.log("onDeviceReady");
 
-
-        //window.currentUser = null;
-        //var request = $.ajax({
-        //                url: "/currentUser",
-        //                method: "GET",
-        //                dataType: "JSON"
-        //              });
-
-        //request.done(function(resp) {
-        //  currentUser = resp; // {id: 4, email: "nate@natedelage.com", role: "client"};
-        //                      // {};
-
-        //  if(currentUser.id) {
-        //    $("#moodForm").show();
-        //  } else {
-        //    $("#login").show();
-        //  }
-        //});
+    var server_mood_states = [];
+    // get server mood states
+    request = $.get( "http://localhost:9393/mood-states", function(resp) {
+      console.log( "get mood-states" );
+    })
+    .fail(function(resp) {
+      alert( "Error.  Call to http://localhost:9393/mood-states failed." );
+    })
+    request.always(function(resp) {
+      server_mood_states = JSON.parse(resp);
+      console.log( "server_mood_states: "+server_mood_states);
+    });     
 
 },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+ //       var parentElement = document.getElementById(id);
+ //       var listeningElement = parentElement.querySelector('.listening');
+  //      var receivedElement = parentElement.querySelector('.received');
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+//        listeningElement.setAttribute('style', 'display:none;');
+//        receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
     }
