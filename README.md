@@ -10,3 +10,7 @@ python -m SimpleHTTPServer
 2. Open the app in Chrome, with Ripple enabled:
 
 [http://localhost:8000/?enableripple=cordova/](http://localhost:8000/?enableripple=cordova/)
+
+## Building & Testing with the iOS Simulator
+
+1. `phonegap run ios`
