@@ -17,8 +17,10 @@
  * under the License.
  */
 var app = {
+
     // Application Constructor
-    initialize: function() {
+    initialize: function(page) {
+        moodPage = page;
         this.bindEvents();
     },
     // Bind Event Listeners
@@ -34,22 +36,56 @@ var app = {
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        console.log("onDeviceReady");
+        window.server_url = "jma-mood-server.herokuapp.com/"
+        window.server_url = "localhost:9393/"
 
-    var server_mood_states = [];
-    // get server mood states
-    request = $.get( "http://localhost:9393/mood-states", function(resp) {
-      console.log( "get mood-states" );
-    })
-    .fail(function(resp) {
-      alert( "Error.  Call to http://localhost:9393/mood-states failed." );
-    })
-    request.always(function(resp) {
-      server_mood_states = JSON.parse(resp);
-      console.log( "server_mood_states: "+server_mood_states);
-    });     
+        // get server mood states
+        request = $.get( "http://localhost:9393/mood-states", function(resp) {
+          console.log( "get mood-states" );
+        })
+        .fail(function(resp) {
+          alert( "Error.  Call to "+window.server_url+"mood-states failed." );
+        })
+        request.success(function(resp) {
+          window.server_mood_states = JSON.parse(resp);
+          //alert(window.server_mood_states);
+          console.log( "server_mood_states: "+window,server_mood_states);
 
-},
+            // init typeahead functionality with server_mood_states
+            $('#mood').typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                  },
+                  {
+                    name: 'mood_states',
+                    displayKey: 'value',
+                    source: substringMatcher(window.server_mood_states)
+            });
+        }); 
+
+         $.get("http://localhost:9393/logged-in",  function() {
+            })
+              .success(function(resp) {
+                //alert("onDeviceReady called logged-in: "+resp);
+                var myLogin = document.getElementById('login');
+                console.log("myLogin "+myLogin);
+
+                // what initial screen to show depends upon response
+                if (resp == "false" )  {
+                    document.getElementById('login').setAttribute('style', 'display:block');
+                    document.getElementById('moodForm').setAttribute('style', 'display:none');
+                }
+                else {
+                    document.getElementById('login').setAttribute('style', 'display:none');
+                    document.getElementById('moodForm').setAttribute('style', 'display:block');
+                }
+              })
+              .fail(function() {
+                alert( "error calling "+window.server_url+"logged-in" );
+              });    
+
+    },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
  //       var parentElement = document.getElementById(id);
@@ -60,5 +96,6 @@ var app = {
 //        receivedElement.setAttribute('style', 'display:block;');
 
         console.log('Received Event: ' + id);
+        //alert("received event " +id);
     }
 };
