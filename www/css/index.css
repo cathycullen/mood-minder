@@ -102,11 +102,16 @@ h2, h3, h4 {
   border-color:red;
   text-align:center;
 }
-
+#moodPage {
+    margin-top: 3em;
+}
 #moodForm {
   border-color:black;
   text-align:center;
   margin-top: 3em;
+}
+#login {
+    margin-top:3em;
 }
 
 #mood-origin {
