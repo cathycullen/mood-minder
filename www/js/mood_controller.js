@@ -12,6 +12,13 @@ moodController = function() {
     for (var a = 0; a < ary.length; a++) obj[ary[a].name] = ary[a].value;
     return obj;
   }
+
+  function get_cookie(cookie) {
+    return document.cookie.split(';').reduce(function(prev, c) {
+        var arr = c.split('=');
+        return (arr[0].trim() === cookie) ? arr[1] : prev;
+    }, undefined);
+}
   
   return {
     initialize: function(page) {
@@ -22,54 +29,26 @@ moodController = function() {
         
         $(moodPage).find('#submit_login').click(function(evt) {
           evt.preventDefault();
-          
           $.get("http://localhost:9393/submit-login", form_to_json(this.form), function() {
          })
           .success(function(resp) {
-            window.currentUser = JSON.parse(resp);
-            var currentUser = JSON.parse(resp);
-            console.log( "submit-login done resp: " + resp+ "currentUser: "+currentUser.id);
-            document.cookie = "user_id="+window.currentUser.id;
-          })
+            if(resp.length > 0) {
+              var currentUser = JSON.parse(resp);
+              $("#user-data").text(currentUser.id);
+              window.currentUser = currentUser;
+              //alert("login: submit-login: currentUser: "+window.currentUser);
+              console.log( "submit-login done resp: " + resp+ "window.currentUser: "+window.currentUser.id);
+              document.getElementById('login').setAttribute('style', 'display:none');
+              document.getElementById('moodForm').setAttribute('style', 'display:block');
+            }
+            else 
+              $("#user-data").text("Invalid Username or Password");
+            })
           .fail(function() {
-            alert( "error calling http://localhost:9393/submit-login" );
+              alert( "error calling "+window.server_url+"submit-login" );
+            });
           });
-        });
-
-        var request = $.ajax({
-                        url: "http://localhost:9393/currentUser",
-                        method: "GET",
-                        dataType: "JSON"
-                      });
-
-         request.fail(function() {
-          alert( "error calling http://localhost:9393/currentUser" );
-        })
-         request.success(function(resp) {
-          window.currentUser = resp;
-          console.log('request.success called');
-          if(window.currentUser.id) {
-            $("#moodForm").show();
-          } else {
-            $("#login").show();
-          }
-        });
-
-
-        $(moodPage).find('#submit_mood').click(function(evt) {
-          evt.preventDefault();
-          
-          $.get("http://localhost:9393/submit-mood", form_to_json(this.form), function() {
-         })
-          .done(function() {
-            console.log( "submit-mood "+form_to_json(this.form) );
-          })
-          .fail(function() {
-            alert( "error calling http://localhost:9393/submit-mood" );
-          });
-        });
         
-        // get all mood_states from server and init
         initialized = true;
         console.log("moodController initialized");
       }
