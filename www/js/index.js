@@ -17,7 +17,6 @@
  * under the License.
  */
 var app = {
-
     // Application Constructor
     initialize: function(page) {
         moodPage = page;
@@ -29,6 +28,12 @@ var app = {
     // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
+
+        // If we aren't running in an emulator, fire onDeviceReady once the page
+        // loads
+        if(!this.isPhoneGap() && !this.isRipple()) {
+          $(document).ready(this.onDeviceReady);
+        }
     },
     // deviceready Event Handler
     //
@@ -97,5 +102,18 @@ var app = {
 
         console.log('Received Event: ' + id);
         //alert("received event " +id);
+    },
+
+    /**
+     * Determine whether the file loaded from PhoneGap or not
+     */
+    isPhoneGap: function() {
+        return (window.cordova || window.PhoneGap || window.phonegap)
+        && /^file:\/{3}[^\/]/i.test(window.location.href)
+        && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
+    },
+    isRipple: function() {
+      return window.tinyHippos;
     }
+
 };
