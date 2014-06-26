@@ -48,6 +48,20 @@ moodController = function() {
               alert( "error calling "+window.server_url+"submit-login" );
             });
           });
+
+         $(moodPage).find('#submit_mood').click(function(evt) {
+          evt.preventDefault();
+          
+          $.get("http://localhost:9393/submit-mood", form_to_json(this.form), function() {
+         })
+          .done(function() {
+            console.log( "submit-mood "+form_to_json(this.form) );
+          })
+          .fail(function() {
+            alert( window.server_url+"/submit-mood" );
+          });
+        });
+        
         
         initialized = true;
         console.log("moodController initialized");
