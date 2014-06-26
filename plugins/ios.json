@@ -4,8 +4,22 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {}
+        "files": {},
+        "config.xml": {
+            "/*": {
+                "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>": 1,
+                "<feature name=\"LocalNotification\"><param name=\"ios-package\" onload=\"true\" value=\"APPLocalNotification\" /><param name=\"onload\" value=\"true\" /></feature>": 1
+            }
+        }
     },
-    "installed_plugins": {},
-    "dependent_plugins": {}
+    "installed_plugins": {
+        "de.appplant.cordova.plugin.local-notification": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        }
+    },
+    "dependent_plugins": {
+        "org.apache.cordova.device": {
+            "PACKAGE_NAME": "com.phonegap.helloworld"
+        }
+    }
 }
