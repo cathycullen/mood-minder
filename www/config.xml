@@ -6,14 +6,14 @@
         id        = "com.phonegap.helloworld"
         version   = "1.0.0">
 
-    <name>HelloWorld</name>
+    <name>Mood Minder</name>
 
     <description>
-        Hello World sample application that responds to the deviceready event.
+      Collect mood states.
     </description>
 
     <author href="http://phonegap.com" email="support@phonegap.com">
-        PhoneGap Team
+      JMA
     </author>
 
     <!--
