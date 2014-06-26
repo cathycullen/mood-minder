@@ -1,3 +1,5 @@
 *.db
 .env
 *.exe
+platforms/ios/www
+*.log
