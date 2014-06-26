@@ -69,26 +69,33 @@ var app = {
             });
         }); 
 
-         $.get("http://localhost:9393/logged-in",  function() {
-            })
-              .success(function(resp) {
-                //alert("onDeviceReady called logged-in: "+resp);
-                var myLogin = document.getElementById('login');
-                console.log("myLogin "+myLogin);
+        var request = $.ajax({
+          type: "GET",
+          url: "http://localhost:9393/logged-in",
+          xhrFields: {
+            withCredentials: true
+          }
+        })
 
-                // what initial screen to show depends upon response
-                if (resp == "false" )  {
-                    document.getElementById('login').setAttribute('style', 'display:block');
-                    document.getElementById('moodForm').setAttribute('style', 'display:none');
-                }
-                else {
-                    document.getElementById('login').setAttribute('style', 'display:none');
-                    document.getElementById('moodForm').setAttribute('style', 'display:block');
-                }
-              })
-              .fail(function() {
-                alert( "error calling "+window.server_url+"logged-in" );
-              });    
+        request.done(function(resp) {
+          //alert("onDeviceReady called logged-in: "+resp);
+          var myLogin = document.getElementById('login');
+          console.log("myLogin "+myLogin);
+
+          // what initial screen to show depends upon response
+          if (resp == "false" )  {
+            document.getElementById('login').setAttribute('style', 'display:block');
+            document.getElementById('moodForm').setAttribute('style', 'display:none');
+          }
+          else {
+            document.getElementById('login').setAttribute('style', 'display:none');
+            document.getElementById('moodForm').setAttribute('style', 'display:block');
+          }
+        });
+
+        request.fail(function() {
+          alert( "error calling "+window.server_url+"logged-in" );
+        });
 
     },
     // Update DOM on a Received Event

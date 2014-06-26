@@ -29,9 +29,14 @@ moodController = function() {
         
         $(moodPage).find('#submit_login').click(function(evt) {
           evt.preventDefault();
-          $.get("http://localhost:9393/submit-login", form_to_json(this.form), function() {
-         })
-          .success(function(resp) {
+          var request = $.ajax({type: "GET",
+                                url: "http://localhost:9393/submit-login",
+                                xhrFields: {
+                                  withCredentials: true
+                                },
+                                data: form_to_json(this.form)
+                               });
+          request.done(function(resp) {
             if(resp.length > 0) {
               var currentUser = JSON.parse(resp);
               $("#user-data").text(currentUser.id);
@@ -40,14 +45,15 @@ moodController = function() {
               console.log( "submit-login done resp: " + resp+ "window.currentUser: "+window.currentUser.id);
               document.getElementById('login').setAttribute('style', 'display:none');
               document.getElementById('moodForm').setAttribute('style', 'display:block');
-            }
-            else 
+            } else {
               $("#user-data").text("Invalid Username or Password");
-            })
-          .fail(function() {
-              alert( "error calling "+window.server_url+"submit-login" );
-            });
+            }
           });
+
+          request.fail(function() {
+            alert( "error calling "+window.server_url+"submit-login" );
+          });
+        });
 
           $(moodPage).find('#submit_mood').click(function(evt) { evt.preventDefault(); 
             $.get("http://localhost:9393/submit-mood", form_to_json(this.form), function() { 
