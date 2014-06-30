@@ -16,6 +16,14 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+ function showElement(element) {
+    xx = (element == null);
+    element.setAttribute('style', 'display:block');
+  }
+  function hideElement(element) {
+    element.setAttribute('style', 'display:none');
+  }
+
 var app = {
     // Application Constructor
     initialize: function(page) {
@@ -54,7 +62,7 @@ var app = {
         request.success(function(resp) {
           window.server_mood_states = JSON.parse(resp);
           //alert(window.server_mood_states);
-          console.log( "server_mood_states: "+window,server_mood_states);
+          console.log( "server_mood_states: "+window.server_mood_states);
 
             // init typeahead functionality with server_mood_states
             $('#mood').typeahead({
@@ -69,6 +77,29 @@ var app = {
             });
         }); 
 
+
+        var request = $.ajax({
+          type: "GET",
+          url: "http://localhost:9393/all-coaches",
+          xhrFields: {
+            withCredentials: true
+          }
+        })
+
+        request.success(function(resp) {
+          window.all_coaches = JSON.parse(resp);
+          alert(window.all_coaches);
+          console.log( "all_coaches: "+window.all_coaches);
+          }
+        });
+
+        request.fail(function() {
+          alert( "error calling "+window.server_url+"all-coaches" );
+        });
+
+
+
+
         var request = $.ajax({
           type: "GET",
           url: "http://localhost:9393/logged-in",
@@ -79,13 +110,18 @@ var app = {
 
         request.done(function(resp) {
           //alert("onDeviceReady called logged-in: "+resp);
-          var myLogin = document.getElementById('login');
-          console.log("myLogin "+myLogin);
+          resp = "false";
+          $('submit_login').width($('email').width());
+          //xx = document.getElementById('email').getAttribute('width');
+          //yy = document.getElementById('submit_login').getAttribute('width');
 
           // what initial screen to show depends upon response
           if (resp == "false" )  {
-            document.getElementById('login').setAttribute('style', 'display:block');
-            document.getElementById('moodForm').setAttribute('style', 'display:none');
+            //document.getElementById('login').setAttribute('style', 'display:block');
+            //document.getElementById('moodForm').setAttribute('style', 'display:none');
+            xx = document.getElementById('login');
+            showElement(document.getElementById('login'));
+            hideElement(document.getElementById('moodForm'));
           }
           else {
             document.getElementById('login').setAttribute('style', 'display:none');
@@ -121,6 +157,12 @@ var app = {
     },
     isRipple: function() {
       return window.tinyHippos;
+    },
+    showElement: function(element) {
+        element.setAttribute('style', 'display:block');
+    },
+    hideElement: function(element) {
+        element.setAttribute('style', 'display:none');
     }
 
 };

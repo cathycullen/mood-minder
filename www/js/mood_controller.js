@@ -55,6 +55,51 @@ moodController = function() {
           });
         });
 
+        // user has hit submit after entering email for forgotten password
+        $(moodPage).find('#submit_forgot_password').click(function(evt) {
+            evt.preventDefault();
+            var request = $.ajax({type: "GET",
+                                  url: "http://localhost:9393/forgot-password",
+                                  xhrFields: {
+                                    withCredentials: true
+                                  },
+                                  data: form_to_json(this.form)
+                                 });
+            request.done(function(resp) {
+                document.getElementById('forgotPassword').setAttribute('style', 'display:none');
+                document.getElementById('login').setAttribute('style', 'display:block');
+              } 
+            });
+
+            request.fail(function() {
+              alert( "error calling "+window.server_url+"forgot-password" );
+            });
+          });
+
+        // user has hit submit after entering new user info
+        $(moodPage).find('#submit_new_user').click(function(evt) {
+            evt.preventDefault();
+            var request = $.ajax({type: "GET",
+                                  url: "http://localhost:9393/create-new-user",
+                                  xhrFields: {
+                                    withCredentials: true
+                                  },
+                                  data: form_to_json(this.form)
+                                 });
+            request.done(function(resp) {
+                document.getElementById('newUser').setAttribute('style', 'display:none');
+                document.getElementById('login').setAttribute('style', 'display:block');
+              } 
+            });
+
+            request.fail(function() {
+              alert( "error calling "+window.server_url+"create-new-user" );
+            });
+          });
+// add events to display new user form and forgot password form
+
+
+
           $(moodPage).find('#submit_mood').click(function(evt) { evt.preventDefault(); 
             $.get("http://localhost:9393/submit-mood", form_to_json(this.form), function() { 
             }) 

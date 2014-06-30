@@ -27,11 +27,11 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap-combined.css"  media="screen" />
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>ood Minder</title>
+        <title>Mood Minder</title>
     </head>
     <body>
-    	<main id = "moodPage">	
-    		<h1>Mood Minder</h1>
+        <h1>Mood Minder</h1>
+    	   <main id = "moodPage">	
     		<!--
     		<div id="deviceready" class="blink">
     				<p class="event listening">Connecting to Device</p>
@@ -42,7 +42,9 @@
                 <form style="display:none" id="login" placeholder="Your Email Address">
                   	<input type="text" name="email" id="email" placeholder="Email"><br>
                   	<input type="password" name="password" id="password" placeholder="Password"><br>			
-                    <button type="submit" id="submit_login" class="btn btn-success" title="">Login</button>
+                    <button type="submit" id="submit_login" class="btn btn-success" title="">Login</button> <br>
+                    <button type="submit" id="create_login" class="btn" title="">Register</button> 
+                    <button type="submit" id="forgot_user" class="btn" title="">Forgot Password?</button>
                 </form>
                 <form  style="display:none" id="moodForm">
                 	<h4 style="margin-bottom:10px;">How Are You Feeling?</h4>
@@ -61,6 +63,22 @@
                 no user yet
                 </div>
             </div>
+        </main>
+        <main id = "forgotPassword">  <div class="container" >
+            <form style="display:none" id="forgotPasswordForm">
+                <input type="text" name="forgot_password_email" id="forgot_password_email" placeholder="Email"><br>          
+                <button type="submit" id="submit_forgot_password" class="btn btn-success" title="">Submit</button> 
+                <button type="submit" id="cancel_forgot_password" class="btn btn-success" title="">Cancel</button> <br>
+            </form> 
+        </main>
+        <main id = "newUser">  <div class="container" >
+            <form style="display:none" id="newUserForm">>
+                <input type="text" name="new_user_email" id="new_user_email" placeholder="Email"><br> 
+                <input type="text" name="new_user_pass1" id="new_user_pass1" placeholder="Password"><br>
+                <input type="text" name="new_user_pass2" id="new_user_pass2" placeholder="Verify Password"><br>
+                <button type="submit" id="submit_new_user" class="btn btn-success" title="">Submit</button> <br>
+                <button type="submit" id="cancel_new_user" class="btn btn-success" title="">Cancel</button> <br>
+            </form> 
         </main>
 		<script type="text/javascript" src="phonegap.js"></script> 
 		<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
