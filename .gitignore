@@ -6,3 +6,5 @@ platforms/ios/www
 platforms/ios/Mood Minder.xcodeproj
 platforms/ios/Mood Minder
 *-
+www/.DS_Store
+.DS_Store
