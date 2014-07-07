@@ -52,112 +52,101 @@ var app = {
       // and sets 8 reminders, between 8:15am and 9:30pm
       //Reminders.setReminders(8, 15, 9+12, 30);
 
-        app.receivedEvent('deviceready');
-        window.server_url = "jma-mood-server.herokuapp.com/"
-        window.server_url = "localhost:9393/"
+      app.receivedEvent('deviceready');
+      window.server_url = "jma-mood-server.herokuapp.com/";
+      window.server_url = "localhost:9393/";
 
-        // get server mood states
-        request = $.get( "http://localhost:9393/mood-states", function(resp) {
-          console.log( "get mood-states" );
-        })
-        .fail(function(resp) {
-          alert( "Error.  Call to "+window.server_url+"mood-states failed." );
-        })
-        request.success(function(resp) {
-          window.server_mood_states = JSON.parse(resp);
-          //alert(window.server_mood_states);
-          console.log( "server_mood_states: "+window.server_mood_states);
+      // get server mood states
+      var moodRequest = $.get( "http://localhost:9393/mood-states", function(resp) {
+        console.log( "get mood-states" );
+      })
+      .fail(function(resp) {
+        alert( "Error.  Call to "+window.server_url+"mood-states failed." );
+      });
+      moodRequest.success(function(resp) {
+        window.server_mood_states = JSON.parse(resp);
+        //alert(window.server_mood_states);
+        console.log( "server_mood_states: "+window.server_mood_states);
 
-            // init typeahead functionality with server_mood_states
-            $('#mood').typeahead({
-                    hint: true,
-                    highlight: true,
-                    minLength: 1
-                  },
-                  {
-                    name: 'mood_states',
-                    displayKey: 'value',
-                    source: substringMatcher(window.server_mood_states)
-            });
-        }); 
-
-
-        var request = $.ajax({
-          type: "GET",
-          url: "http://localhost:9393/all-coaches",
-          xhrFields: {
-            withCredentials: true
-          }
-        })
-
-        request.success(function(resp) {
-          window.all_coaches = JSON.parse(resp);
-          alert(window.all_coaches);
-          console.log( "all_coaches: "+window.all_coaches);
-          }
-        });
-
-        request.fail(function() {
-          alert( "error calling "+window.server_url+"all-coaches" );
-        });
+        // init typeahead functionality with server_mood_states
+        $('#mood').typeahead({
+                                hint: true,
+                                highlight: true,
+                                minLength: 1
+                              },
+                              {
+                                name: 'mood_states',
+                                displayKey: 'value',
+                                source: substringMatcher(window.server_mood_states)
+                              });
+      });
 
 
+      var coachesRequest = $.ajax({
+        type: "GET",
+        url: "http://localhost:9393/all-coaches",
+        xhrFields: {
+          withCredentials: true
+        }
+      });
+
+      coachesRequest.success(function(resp) {
+        window.all_coaches = JSON.parse(resp);
+        alert(window.all_coaches);
+        console.log( "all_coaches: "+window.all_coaches);
+      });
+
+      coachesRequest.fail(function() {
+        alert( "error calling "+window.server_url+"all-coaches" );
+      });
 
 
-        var request = $.ajax({
-          type: "GET",
-          url: "http://localhost:9393/logged-in",
-          xhrFields: {
-            withCredentials: true
-          }
-        })
+      var loggedInRequest = $.ajax({
+        type: "GET",
+        url: "http://localhost:9393/logged-in",
+        xhrFields: {
+          withCredentials: true
+        }
+      });
 
-        request.done(function(resp) {
-          //alert("onDeviceReady called logged-in: "+resp);
-          resp = "false";
-          $('submit_login').width($('email').width());
-          //xx = document.getElementById('email').getAttribute('width');
-          //yy = document.getElementById('submit_login').getAttribute('width');
+      loggedInRequest.done(function(resp) {
+        //alert("onDeviceReady called logged-in: "+resp);
+        resp = "false";
+        $('submit_login').width($('email').width());
+        //xx = document.getElementById('email').getAttribute('width');
+        //yy = document.getElementById('submit_login').getAttribute('width');
 
-          // what initial screen to show depends upon response
-          if (resp == "false" )  {
-            //document.getElementById('login').setAttribute('style', 'display:block');
-            //document.getElementById('moodForm').setAttribute('style', 'display:none');
-            xx = document.getElementById('login');
-            showElement(document.getElementById('login'));
-            hideElement(document.getElementById('moodForm'));
-          }
-          else {
-            document.getElementById('login').setAttribute('style', 'display:none');
-            document.getElementById('moodForm').setAttribute('style', 'display:block');
-          }
-        });
+        // what initial screen to show depends upon response
+        if (resp == "false" )  {
+          //document.getElementById('login').setAttribute('style', 'display:block');
+          //document.getElementById('moodForm').setAttribute('style', 'display:none');
+          xx = document.getElementById('login');
+          showElement(document.getElementById('login'));
+          hideElement(document.getElementById('moodForm'));
+        }
+        else {
+          document.getElementById('login').setAttribute('style', 'display:none');
+          document.getElementById('moodForm').setAttribute('style', 'display:block');
+        }
+      });
 
-        request.fail(function() {
-          alert( "error calling "+window.server_url+"logged-in" );
-        });
-
+      loggedInRequest.fail(function() {
+        alert( "error calling "+window.server_url+"logged-in" );
+      });
     },
+
     // Update DOM on a Received Event
     receivedEvent: function(id) {
- //       var parentElement = document.getElementById(id);
- //       var listeningElement = parentElement.querySelector('.listening');
-  //      var receivedElement = parentElement.querySelector('.received');
-
-//        listeningElement.setAttribute('style', 'display:none;');
-//        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
-        //alert("received event " +id);
+      console.log('Received Event: ' + id);
     },
 
     /**
      * Determine whether the file loaded from PhoneGap or not
      */
     isPhoneGap: function() {
-        return (window.cordova || window.PhoneGap || window.phonegap)
-        && /^file:\/{3}[^\/]/i.test(window.location.href)
-        && /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
+        return (window.cordova || window.PhoneGap || window.phonegap) &&
+          /^file:\/{3}[^\/]/i.test(window.location.href) &&
+          /ios|iphone|ipod|ipad|android/i.test(navigator.userAgent);
     },
     isRipple: function() {
       return window.tinyHippos;
