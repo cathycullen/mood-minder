@@ -90,8 +90,7 @@ var app = {
           window.all_coaches = JSON.parse(resp);
           alert(window.all_coaches);
           console.log( "all_coaches: "+window.all_coaches);
-          }
-        });
+        })
 
         request.fail(function() {
           alert( "error calling "+window.server_url+"all-coaches" );
@@ -111,17 +110,11 @@ var app = {
         request.done(function(resp) {
           //alert("onDeviceReady called logged-in: "+resp);
           resp = "false";
-          $('submit_login').width($('email').width());
-          //xx = document.getElementById('email').getAttribute('width');
-          //yy = document.getElementById('submit_login').getAttribute('width');
 
           // what initial screen to show depends upon response
           if (resp == "false" )  {
-            //document.getElementById('login').setAttribute('style', 'display:block');
-            //document.getElementById('moodForm').setAttribute('style', 'display:none');
-            xx = document.getElementById('login');
-            showElement(document.getElementById('login'));
-            hideElement(document.getElementById('moodForm'));
+            document.getElementById('login').setAttribute('style', 'display:block');
+            document.getElementById('moodForm').setAttribute('style', 'display:none');
           }
           else {
             document.getElementById('login').setAttribute('style', 'display:none');

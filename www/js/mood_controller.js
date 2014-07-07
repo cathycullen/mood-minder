@@ -68,8 +68,7 @@ moodController = function() {
             request.done(function(resp) {
                 document.getElementById('forgotPassword').setAttribute('style', 'display:none');
                 document.getElementById('login').setAttribute('style', 'display:block');
-              } 
-            });
+            })
 
             request.fail(function() {
               alert( "error calling "+window.server_url+"forgot-password" );
@@ -89,7 +88,6 @@ moodController = function() {
             request.done(function(resp) {
                 document.getElementById('newUser').setAttribute('style', 'display:none');
                 document.getElementById('login').setAttribute('style', 'display:block');
-              } 
             });
 
             request.fail(function() {
