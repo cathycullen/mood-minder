@@ -48,6 +48,10 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicity call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+      // The following line removes all existing reminders
+      // and sets 8 reminders, between 8:15am and 9:30pm
+      //Reminders.setReminders(8, 15, 9+12, 30);
+
         app.receivedEvent('deviceready');
         window.server_url = "jma-mood-server.herokuapp.com/"
         window.server_url = "localhost:9393/"
