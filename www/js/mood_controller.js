@@ -1,11 +1,11 @@
-moodController = function() {
+var moodController = function() {
   var moodPage;
   var initialized = false;
-  
+
   function errorLogger(errorCode, errorMessage) {
     console.log('Error: '+errorCode + ':'+ errorMessage);
   }
-  
+
   function form_to_json (selector) {
     var ary = $(selector).serializeArray();
     var obj = {};
@@ -18,15 +18,15 @@ moodController = function() {
         var arr = c.split('=');
         return (arr[0].trim() === cookie) ? arr[1] : prev;
     }, undefined);
-}
-  
+  }
+
   return {
     initialize: function(page) {
       if (!initialized) {
-       
+
         moodPage = page;
+
         //initialize click event on submit login button, which will serialize form data and submit to server
-        
 
         $(moodPage).find('#submit_login').click(function(evt) {
             var loginRequest = $.ajax({
@@ -64,10 +64,6 @@ moodController = function() {
         });
 
 
-
-
-
-        
         $('#forgot_user').click(function(evt) {
           document.getElementById('login').setAttribute('style', 'display:none');
           document.getElementById('moodForm').setAttribute('style', 'display:none');
@@ -99,7 +95,7 @@ moodController = function() {
             submitPassworRequest.done(function(resp) {
                 document.getElementById('forgotPassword').setAttribute('style', 'display:none');
                 document.getElementById('login').setAttribute('style', 'display:block');
-            })
+            });
 
             submitPassworRequest.fail(function() {
               alert( "error calling "+window.server_url+"forgot-password" );
@@ -125,24 +121,21 @@ moodController = function() {
               alert( "error calling "+window.server_url+"create-new-user" );
             });
           });
-// add events to display new user form and forgot password form
 
-
-          //todo  change to  withCredeitnals call
-          $(moodPage).find('#submit_mood').click(function(evt) { evt.preventDefault(); 
-            $.get("http://localhost:9393/submit-mood", form_to_json(this.form), function() { 
-            }) 
-            .done(function() { 
-              console.log( "submit-mood "+form_to_json(this.form) ); 
-            }) 
-            .fail(function() { alert( window.server_url+"/submit-mood" ); 
-          }); 
+          // add events to display new user form and forgot password form
+          $(moodPage).find('#submit_mood').click(function(evt) {
+            evt.preventDefault();
+            $.get("http://localhost:9393/submit-mood", form_to_json(this.form), function() {
+            })
+            .done(function() {
+              console.log( "submit-mood "+form_to_json(this.form) );
+            })
+            .fail(function() { alert( window.server_url+"/submit-mood" );
+          });
         });
-        
         initialized = true;
         console.log("moodController initialized");
       }
     }
    }
-}();  
-
+}();

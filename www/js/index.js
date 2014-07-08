@@ -82,8 +82,8 @@ var app = {
       moodRequest.success(function(resp) {
         window.server_mood_states = JSON.parse(resp);
 
-        // init typeahead functionality with server_mood_states
-        try {
+        $(document).ready(function() {
+          // init typeahead functionality with server_mood_states
           $('#mood').typeahead({
             hint: true,
             highlight: true,
@@ -94,11 +94,7 @@ var app = {
             displayKey: 'value',
             source: substringMatcher(window.server_mood_states)
           });
-        }
-        catch(err)  {
-          console.log("Error calling #mood.typeahead");
-        }
-
+        });
       });
 
 
@@ -127,39 +123,27 @@ var app = {
         }
       });
 
-      loggedInRequest.success(function(resp) {
-        resp = "false";
+      loggedInRequest.done(function(resp) {
         $('submit_login').width($('email').width());
 
         // what initial screen to show depends upon response
         if (resp == "false" )  {
-          try {
-            document.getElementById('login').setAttribute('style', 'display:block');
-            document.getElementById('moodForm').setAttribute('style', 'display:none');
-            document.getElementById('forgotPasswordForm').setAttribute('style', 'display:none');
-            document.getElementById('newUserForm').setAttribute('style', 'display:none');
-          }
-          catch(err) {
-            console.log("error+ "+err)
-          }
-
+          $("#login").show();
+          $("#moodForm").hide();
+          $("#forgotPasswordForm").hide();
+          $("#newUserForm").hide();
         }
         else {
-            document.getElementById('moodForm').setAttribute('style', 'display:block');
-            document.getElementById('login').setAttribute('style', 'display:none');
-            document.getElementById('forgotPasswordForm').setAttribute('style', 'display:none');
-            document.getElementById('newUserForm').setAttribute('style', 'display:none');
+          $("#login").hide();
+          $("#moodForm").show();
+          $("#forgotPasswordForm").hide();
+          $("#newUserForm").hide();
         }
       });
 
       loggedInRequest.fail(function() {
         alert( "error calling "+window.server_url+"logged-in" );
       });
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-      console.log('Received Event: ' + id);
     },
 
     /**
@@ -172,12 +156,5 @@ var app = {
     },
     isRipple: function() {
       return window.tinyHippos;
-    },
-    showElement: function(element) {
-        element.setAttribute('style', 'display:block');
-    },
-    hideElement: function(element) {
-        element.setAttribute('style', 'display:none');
     }
-
 };
