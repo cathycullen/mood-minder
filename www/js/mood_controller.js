@@ -64,21 +64,28 @@ var moodController = function() {
         });
 
 
-        $('#forgot_user').click(function(evt) {
-          document.getElementById('login').setAttribute('style', 'display:none');
-          document.getElementById('moodForm').setAttribute('style', 'display:none');
-          document.getElementById('forgotPasswordForm').setAttribute('style', 'display:block');
+        $('#forgot_password').click(function(evt) {
+          console.log("forgot_password");
+          $("#login").hide();
+          $("#moodForm").hide();
+          $("#forgotPasswordForm").show();
+          $("#newUserForm").hide();
         });
 
         $('#create_login').click(function(evt) {
-          document.getElementById('login').setAttribute('style', 'display:none');
-          document.getElementById('moodForm').setAttribute('style', 'display:none');
+          console.log("create_login");
+          $("#login").hide();
+          $("#moodForm").hide();
+          $("#forgotPasswordForm").hide();
+          $("#newUserForm").show();
           document.getElementById('newUserForm').setAttribute('style', 'display:block');
         }); 
         $('#cancel_forgot_password').click(function(evt) {
-          document.getElementById('login').setAttribute('style', 'display:block');
-          document.getElementById('moodForm').setAttribute('style', 'display:none');
-          document.getElementById('forgotPasswordForm').setAttribute('style', 'display:none');
+          console.log("forgot_password");
+          $("#login").show();
+          $("#moodForm").hide();
+          $("#forgotPasswordForm").hide();
+          $("#newUserForm").hide();
         });
 
         // user has hit submit after entering email for forgotten password

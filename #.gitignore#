@@ -1,0 +1,12 @@
+*~
+*.db
+.env
+*.exe
+platforms/ios/www
+*.log
+platforms/ios/Mood Minder.xcodeproj
+platforms/ios/Mood Minder
+*-
+www/.DS_Store
+.DS_Store
+*/.DS_Store

@@ -67,7 +67,7 @@ var app = {
 
       console.log("onDeviceReady called");
 
-      app.receivedEvent('deviceready');
+      //app.receivedEvent('deviceready');
       window.server_url = "jma-mood-server.herokuapp.com/";
       window.server_url = "localhost:9393/";
 
@@ -125,6 +125,7 @@ var app = {
 
       loggedInRequest.done(function(resp) {
         $('submit_login').width($('email').width());
+        resp = "false";
 
         // what initial screen to show depends upon response
         if (resp == "false" )  {
