@@ -16,14 +16,6 @@
  * specific language governing permissions and limitations
  * under the License.
  */
- function showElement(element) {
-    xx = (element == null);
-    element.setAttribute('style', 'display:block');
-  }
-  function hideElement(element) {
-    element.setAttribute('style', 'display:none');
-  }
-
 var app = {
     // Application Constructor
     initialize: function(page) {
@@ -52,7 +44,6 @@ var app = {
       // and sets 8 reminders, between 8:15am and 9:30pm
       //Reminders.setReminders(8, 15, 9+12, 30);
 
-      app.receivedEvent('deviceready');
       window.server_url = "jma-mood-server.herokuapp.com/";
       window.server_url = "localhost:9393/";
 
@@ -68,17 +59,19 @@ var app = {
         //alert(window.server_mood_states);
         console.log( "server_mood_states: "+window.server_mood_states);
 
-        // init typeahead functionality with server_mood_states
-        $('#mood').typeahead({
-                                hint: true,
-                                highlight: true,
-                                minLength: 1
-                              },
-                              {
-                                name: 'mood_states',
-                                displayKey: 'value',
-                                source: substringMatcher(window.server_mood_states)
-                              });
+        $(document).ready(function() {
+          // init typeahead functionality with server_mood_states
+          $('#mood').typeahead({
+                                  hint: true,
+                                  highlight: true,
+                                  minLength: 1
+                                },
+                                {
+                                  name: 'mood_states',
+                                  displayKey: 'value',
+                                  source: substringMatcher(window.server_mood_states)
+                                });
+        });
       });
 
 
@@ -99,8 +92,6 @@ var app = {
       coachesRequest.fail(function() {
         alert( "error calling "+window.server_url+"all-coaches" );
       });
->>>>>>> 684345e1570ac567444193c820e5bd7fddc281fd
-
 
       var loggedInRequest = $.ajax({
         type: "GET",
@@ -111,34 +102,24 @@ var app = {
       });
 
       loggedInRequest.done(function(resp) {
-        //alert("onDeviceReady called logged-in: "+resp);
-        resp = "false";
         $('submit_login').width($('email').width());
         //xx = document.getElementById('email').getAttribute('width');
         //yy = document.getElementById('submit_login').getAttribute('width');
 
         // what initial screen to show depends upon response
         if (resp == "false" )  {
-          //document.getElementById('login').setAttribute('style', 'display:block');
-          //document.getElementById('moodForm').setAttribute('style', 'display:none');
-          xx = document.getElementById('login');
-          showElement(document.getElementById('login'));
-          hideElement(document.getElementById('moodForm'));
+          $("#login").show();
+          $("#moodForm").hide();
         }
         else {
-          document.getElementById('login').setAttribute('style', 'display:none');
-          document.getElementById('moodForm').setAttribute('style', 'display:block');
+          $("#login").hide();
+          $("#moodForm").show();
         }
       });
 
       loggedInRequest.fail(function() {
         alert( "error calling "+window.server_url+"logged-in" );
       });
-    },
-
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-      console.log('Received Event: ' + id);
     },
 
     /**
@@ -151,12 +132,5 @@ var app = {
     },
     isRipple: function() {
       return window.tinyHippos;
-    },
-    showElement: function(element) {
-        element.setAttribute('style', 'display:block');
-    },
-    hideElement: function(element) {
-        element.setAttribute('style', 'display:none');
     }
-
 };
