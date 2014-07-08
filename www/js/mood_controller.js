@@ -25,79 +25,110 @@ moodController = function() {
       if (!initialized) {
        
         moodPage = page;
-        //initialize click event on submit button, which will serialize form data and submit to server
+        //initialize click event on submit login button, which will serialize form data and submit to server
         
+
         $(moodPage).find('#submit_login').click(function(evt) {
-          evt.preventDefault();
-          var request = $.ajax({type: "GET",
-                                url: "http://localhost:9393/submit-login",
-                                xhrFields: {
-                                  withCredentials: true
-                                },
-                                data: form_to_json(this.form)
-                               });
-          request.done(function(resp) {
-            if(resp.length > 0) {
-              var currentUser = JSON.parse(resp);
-              $("#user-data").text(currentUser.id);
-              window.currentUser = currentUser;
-              //alert("login: submit-login: currentUser: "+window.currentUser);
-              console.log( "submit-login done resp: " + resp+ "window.currentUser: "+window.currentUser.id);
-              document.getElementById('login').setAttribute('style', 'display:none');
-              document.getElementById('moodForm').setAttribute('style', 'display:block');
-            } else {
-              $("#user-data").text("Invalid Username or Password");
-            }
+            var loginRequest = $.ajax({
+            type: "GET",
+             url: "http://localhost:9393/submit-login",
+              xhrFields: {
+                withCredentials: true
+              },
+              data: form_to_json(this.form)
+             });
+
+            loginRequest.success(function(resp) { 
+              console.log("currentUser resp: "+resp);
+              if(resp.length > 0) {
+                var currentUser = JSON.parse(resp);
+                $("#user-data").text(currentUser.id);
+                window.currentUser = currentUser;
+                //alert("login: submit-login: currentUser: "+window.currentUser);
+                console.log( "submit-login done resp: " + resp+ "window.currentUser: "+window.currentUser.id);
+                document.getElementById('login').setAttribute('style', 'display:none');
+                document.getElementById('moodForm').setAttribute('style', 'display:block');
+                showElement($('#moodForm'));
+              } else {
+                $("#user-data").text("Invalid Username or Password");
+              }
+            });
+
+          loginRequest.fail(function() {
+            alert( "error calling submit-login" );
           });
 
-          request.fail(function() {
-            alert( "error calling "+window.server_url+"submit-login" );
+          loginRequest.done(function() {
+            console.log( "done calling submit-login" );
           });
         });
 
+
+
+
+
+        
+        $('#forgot_user').click(function(evt) {
+          document.getElementById('login').setAttribute('style', 'display:none');
+          document.getElementById('moodForm').setAttribute('style', 'display:none');
+          document.getElementById('forgotPasswordForm').setAttribute('style', 'display:block');
+        });
+
+        $('#create_login').click(function(evt) {
+          document.getElementById('login').setAttribute('style', 'display:none');
+          document.getElementById('moodForm').setAttribute('style', 'display:none');
+          document.getElementById('newUserForm').setAttribute('style', 'display:block');
+        }); 
+        $('#cancel_forgot_password').click(function(evt) {
+          document.getElementById('login').setAttribute('style', 'display:block');
+          document.getElementById('moodForm').setAttribute('style', 'display:none');
+          document.getElementById('forgotPasswordForm').setAttribute('style', 'display:none');
+        });
+
         // user has hit submit after entering email for forgotten password
-        $(moodPage).find('#submit_forgot_password').click(function(evt) {
+        $('#submit_forgot_password').click(function(evt) {
             evt.preventDefault();
-            var request = $.ajax({type: "GET",
+            console.log("submit forgot password called")
+            var submitPassworRequest = $.ajax({type: "GET",
                                   url: "http://localhost:9393/forgot-password",
                                   xhrFields: {
                                     withCredentials: true
                                   },
                                   data: form_to_json(this.form)
                                  });
-            request.done(function(resp) {
+            submitPassworRequest.done(function(resp) {
                 document.getElementById('forgotPassword').setAttribute('style', 'display:none');
                 document.getElementById('login').setAttribute('style', 'display:block');
             })
 
-            request.fail(function() {
+            submitPassworRequest.fail(function() {
               alert( "error calling "+window.server_url+"forgot-password" );
             });
           });
 
         // user has hit submit after entering new user info
-        $(moodPage).find('#submit_new_user').click(function(evt) {
+        $('#submit_new_user').click(function(evt) {
             evt.preventDefault();
-            var request = $.ajax({type: "GET",
+            var createNewUserRequest = $.ajax({type: "GET",
                                   url: "http://localhost:9393/create-new-user",
                                   xhrFields: {
                                     withCredentials: true
                                   },
                                   data: form_to_json(this.form)
                                  });
-            request.done(function(resp) {
+            createNewUserRequest.done(function(resp) {
                 document.getElementById('newUser').setAttribute('style', 'display:none');
                 document.getElementById('login').setAttribute('style', 'display:block');
             });
 
-            request.fail(function() {
+            createNewUserRequest.fail(function() {
               alert( "error calling "+window.server_url+"create-new-user" );
             });
           });
 // add events to display new user form and forgot password form
 
 
-
+          //todo  change to  withCredeitnals call
           $(moodPage).find('#submit_mood').click(function(evt) { evt.preventDefault(); 
             $.get("http://localhost:9393/submit-mood", form_to_json(this.form), function() { 
             }) 

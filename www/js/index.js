@@ -16,12 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
  function showElement(element) {
-    xx = (element == null);
-    element.setAttribute('style', 'display:block');
+    if(element != null) {
+        try {
+          element.setAttribute('style', 'display:block');
+      }
+      catch(err) {
+        console.log("showElement: element not found: "+element);  
+      }
+    }
   }
+
   function hideElement(element) {
-    element.setAttribute('style', 'display:none');
+    if(element != null) {
+        try {
+          element.setAttribute('style', 'display:none');
+      }
+      catch(err) {
+        console.log("hideElement: element not found: "+element);  
+      }
+    }
   }
 
 var app = {
@@ -32,8 +47,6 @@ var app = {
     },
     // Bind Event Listeners
     //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
     bindEvents: function() {
         document.addEventListener('deviceready', this.onDeviceReady, false);
 
@@ -52,6 +65,8 @@ var app = {
       // and sets 8 reminders, between 8:15am and 9:30pm
       //Reminders.setReminders(8, 15, 9+12, 30);
 
+      console.log("onDeviceReady called");
+
       app.receivedEvent('deviceready');
       window.server_url = "jma-mood-server.herokuapp.com/";
       window.server_url = "localhost:9393/";
@@ -63,22 +78,27 @@ var app = {
       .fail(function(resp) {
         alert( "Error.  Call to "+window.server_url+"mood-states failed." );
       });
+
       moodRequest.success(function(resp) {
         window.server_mood_states = JSON.parse(resp);
-        //alert(window.server_mood_states);
-        console.log( "server_mood_states: "+window.server_mood_states);
 
         // init typeahead functionality with server_mood_states
-        $('#mood').typeahead({
-                                hint: true,
-                                highlight: true,
-                                minLength: 1
-                              },
-                              {
-                                name: 'mood_states',
-                                displayKey: 'value',
-                                source: substringMatcher(window.server_mood_states)
-                              });
+        try {
+          $('#mood').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+          },
+          {
+            name: 'mood_states',
+            displayKey: 'value',
+            source: substringMatcher(window.server_mood_states)
+          });
+        }
+        catch(err)  {
+          console.log("Error calling #mood.typeahead");
+        }
+
       });
 
 
@@ -92,14 +112,11 @@ var app = {
 
       coachesRequest.success(function(resp) {
         window.all_coaches = JSON.parse(resp);
-        alert(window.all_coaches);
-        console.log( "all_coaches: "+window.all_coaches);
       });
 
       coachesRequest.fail(function() {
         alert( "error calling "+window.server_url+"all-coaches" );
       });
->>>>>>> 684345e1570ac567444193c820e5bd7fddc281fd
 
 
       var loggedInRequest = $.ajax({
@@ -110,24 +127,28 @@ var app = {
         }
       });
 
-      loggedInRequest.done(function(resp) {
-        //alert("onDeviceReady called logged-in: "+resp);
+      loggedInRequest.success(function(resp) {
         resp = "false";
         $('submit_login').width($('email').width());
-        //xx = document.getElementById('email').getAttribute('width');
-        //yy = document.getElementById('submit_login').getAttribute('width');
 
         // what initial screen to show depends upon response
         if (resp == "false" )  {
-          //document.getElementById('login').setAttribute('style', 'display:block');
-          //document.getElementById('moodForm').setAttribute('style', 'display:none');
-          xx = document.getElementById('login');
-          showElement(document.getElementById('login'));
-          hideElement(document.getElementById('moodForm'));
+          try {
+            document.getElementById('login').setAttribute('style', 'display:block');
+            document.getElementById('moodForm').setAttribute('style', 'display:none');
+            document.getElementById('forgotPasswordForm').setAttribute('style', 'display:none');
+            document.getElementById('newUserForm').setAttribute('style', 'display:none');
+          }
+          catch(err) {
+            console.log("error+ "+err)
+          }
+
         }
         else {
-          document.getElementById('login').setAttribute('style', 'display:none');
-          document.getElementById('moodForm').setAttribute('style', 'display:block');
+            document.getElementById('moodForm').setAttribute('style', 'display:block');
+            document.getElementById('login').setAttribute('style', 'display:none');
+            document.getElementById('forgotPasswordForm').setAttribute('style', 'display:none');
+            document.getElementById('newUserForm').setAttribute('style', 'display:none');
         }
       });
 
