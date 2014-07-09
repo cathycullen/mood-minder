@@ -24,20 +24,49 @@
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
 
+        <!--
         <link rel="stylesheet" type="text/css" href="css/bootstrap-combined.css"  media="screen" />
+      -->
         <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />                
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
         <title>Mood Minder</title>
     </head>
     <body>
-      <h1>Mood Minder</h1>
-      <main id="moodPage">
+      <nav class="navbar navbar-default navbar-inverse" role="navigation">
+          <div class="container-fluid" id="navfluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="./Index.html">MoodMinder</a>
+            </div>
+            <div class="collapse navbar-collapse" id="navigationbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#moodForm">Moods</a></li>
+                <li><a href="#login">Login</a></li>
+                <li><a href="#">Reports</a></li>
+                <li><a href=".#">Setup</a></li>    
+                <li><a href="#">Forgot Password</a></li>
+                <li><a href="#">New User</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+        </nav>
+        <script scr="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <h1>Mood Minder</h1>
+        <main id="moodPage">
         <!--
         <div id="deviceready" class="blink">
             <p class="event listening">Connecting to Device</p>
             <p class="event received">Device is Ready</p>
         </div>
         -->
+        
         <div class="container" >
           <form style="display:none" id="login" placeholder="Your Email Address">
             <input type="text" name="email" id="email" placeholder="Email"><br>
@@ -101,7 +130,8 @@
       <!--
       <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">></script>
     -->
-      <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+      <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                
+      <script src="js/bootstrap.min.js"></script>
 
       <script type="text/javascript" src="js/index.js"></script>
       <script src="js/typeahead.bundle.js"></script>

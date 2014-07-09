@@ -39,23 +39,22 @@ var moodController = function() {
              });
 
             loginRequest.success(function(resp) { 
-              console.log("currentUser resp: "+resp);
+              console.log("submit_login succeeded: currentUser resp: "+resp);
               if(resp.length > 0) {
                 var currentUser = JSON.parse(resp);
                 $("#user-data").text(currentUser.id);
                 window.currentUser = currentUser;
                 //alert("login: submit-login: currentUser: "+window.currentUser);
                 console.log( "submit-login done resp: " + resp+ "window.currentUser: "+window.currentUser.id);
-                document.getElementById('login').setAttribute('style', 'display:none');
-                document.getElementById('moodForm').setAttribute('style', 'display:block');
-                showElement($('#moodForm'));
+                $("#login").hide();
+                $("#moodForm").show();
               } else {
                 $("#user-data").text("Invalid Username or Password");
               }
             });
 
           loginRequest.fail(function() {
-            alert( "error calling submit-login" );
+            alert( "submit-login failed" );
           });
 
           loginRequest.done(function() {

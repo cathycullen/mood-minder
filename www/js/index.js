@@ -125,7 +125,6 @@ var app = {
 
       loggedInRequest.done(function(resp) {
         $('submit_login').width($('email').width());
-        resp = "false";
 
         // what initial screen to show depends upon response
         if (resp == "false" )  {
