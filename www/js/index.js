@@ -124,6 +124,7 @@ var app = {
       });
 
       loggedInRequest.done(function(resp) {
+        
         $('submit_login').width($('email').width());
 
         // what initial screen to show depends upon response
@@ -139,6 +140,7 @@ var app = {
           $("#forgotPasswordForm").hide();
           $("#newUserForm").hide();
         }
+        
       });
 
       loggedInRequest.fail(function() {
