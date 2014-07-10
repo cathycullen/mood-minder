@@ -29,6 +29,7 @@ var moodController = function() {
         //initialize click event on submit login button, which will serialize form data and submit to server
 
         $(moodPage).find('#submit_login').click(function(evt) {
+            evt.preventDefault();
             var loginRequest = $.ajax({
             type: "GET",
              url: "http://localhost:9393/submit-login",
