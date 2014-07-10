@@ -1,160 +1,190 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
   <head>
     <meta charset="utf-8" />
     <meta name="format-detection" content="telephone=no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <!--<link rel="stylesheet" type="text/css" href="css/index.css" />  
-    -->       
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="css/vendor/font-awesome.min.css" type="text/css" rel="stylesheet">
+    <link href="css/vendor/typeahead.css" type="text/css" rel="stylesheet">
+
+    <!--<link rel="stylesheet" type="text/css" href="css/index.css" />-->
 
     <title>Mood Minder</title>
   </head>
-    <body>
-      <nav class="navbar navbar-default navbar-inverse" role="navigation">
-        <div class="container-fluid" id="navfluid">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="./Index.html">MoodMinder</a>
-          </div>
-          <div class="collapse navbar-collapse" id="navigationbar">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#moodForm">Moods</a></li>
-              <li><a href="#login">Login</a></li>
-              <li><a href="#">Reports</a></li>
-              <li><a href=".#">Setup</a></li>    
-              <li><a href="#">Forgot Password</a></li>
-              <li><a href="#">New User</a></li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
+
+  <body>
+    <nav class="navbar navbar-default navbar-inverse" role="navigation">
+      <div class="container-fluid" id="navfluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">MoodMinder</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navigationbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#moodForm">Moods</a></li>
+            <li><a href="#login">Login</a></li>
+            <li><a href="#">Reports</a></li>
+            <li><a href=".#">Setup</a></li>
+            <li><a href="#">Forgot Password</a></li>
+            <li><a href="#">New User</a></li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
-        </nav>
-        <script scr="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <h1>Mood Minder</h1>
-        <main id="moodPage">
-        <!--
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
+    </nav>
+
+
+
+    <div id="content" class="container">
+      <!-- All page content will appear here. Do not add any hardcoded content
+      to this div -->
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Vendor JS -->
+    <script type="text/javascript" src="phonegap.js"></script>
+    <script type="text/javascript" src="js/vendor/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/vendor/typeahead.bundle.js"></script>
+    <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+
+    <!-- App JS -->
+    <!-- helpers -->
+    <script type="text/javascript" src="js/helpers/reminders.js"></script>
+    <!-- controllers -->
+    <script type="text/javascript" src="js/controllers/moods.js"></script>
+    <script type="text/javascript" src="js/controllers/coaches.js"></script>
+    <script type="text/javascript" src="js/controllers/sessions.js"></script>
+
+    <!-- views -->
+    <script type="text/javascript" src="js/views/forgot_password.js"></script>
+    <script type="text/javascript" src="js/views/login.js"></script>
+    <script type="text/javascript" src="js/views/moods.js"></script>
+    <script type="text/javascript" src="js/views/signup.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script type="text/javascript">
+      // all controllers use window.apiURL
+      // production
+      // window.apiURL = "http://jma-mood-server.herokuapp.com/"
+      // development
+      window.apiURL = "http://localhost:9393/"
+
+      app.initialize();
+    </script>
+
+
+    <script id="login-template" type="text/template">
+      <form class="bs-example" id="login">
+        <p class="status"></p>
+        <div class="form-group">
+          <label for="inputEmail" >Email</label>
+          <input type="email" class="form-control" name="email" id="email" placeholder="Your Email Address">
+          <label for="inputPassword">Password</label>
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password">
         </div>
-        -->
-        
-        <div class="container" >
-          <form style="display:none" class="bs-example" id="login" placeholder="Your Email Address">
-              <div class="form-group">
-                <label for="inputEmail" >Email</label>
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email Address">
-                <label for="inputPassword">Password</label>
-                <input type="password" class="form-control" name="password" id="password" placeholder="Password"> 
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn btn-success">Login</button>
-              </div>
-              <div class="form-group">
-                <button type="submit" class="btn ">Forgot Password</button>
-                <button type="submit" class="btn ">Register</button>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">Login</button>
+        </div>
+      </form>
+
+      <div class="form-group">
+        <button type="submit" id="forgot-password" class="btn">Forgot Password</button>
+        <button type="submit" id="signup" class="btn">Register</button>
+      </div>
+    </script>
+
+    <script id="mood-template" type="text/template">
+      <form id="moodForm">
+        <div class="row-fluid">
+          <h4><i class="icon-plus-sign-alt"></i> How Are You Feeling?</h4>
+          <hr>
+          <p class="status"></p>
+          <div class="clearfix">
+
+            <div class="form-group">
+              <label>Your Current State</label>
+              <input type="text" id="mood" name="mood" placeholder="Your Current State">
             </div>
-        </form>
-        <div class="container">
-        <form style="display:none" id="moodForm">       
-          <hr class="hr-dark">
-          <div class="row-fluid">
-            <h4 class=""><i class="icon-plus-sign-alt"></i> How Are You Feeling?</h4>
-            <hr>
-            <div class="clearfix">
-              <fieldset class="span8">
-                <label>Your Current State</label>
-                <input type="text" id="mood" name="mood" class="span8" placeholder="Your Current State">
-                <label>Origin</label>
-                <select id="origin" name="origin" class="span6 selectpicker">
-                  <option>Self Directed</option>
-                  <option>Event Driven</option>
-                </select>
-                <label>Energy Level</label>
-                <select id="energy-level" name="energy-level" class="span3 selectpicker">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                </select>
-                <label>Your Thoughts</label>
-              <input type="text" id="thoughts"  name="thoughts" placeholder="Your Thoughts" >
-              </fieldset>
-           </div><!--/.clearfix-->
-          </div><!--/.row-->
-            <button type="submit" id="submit_mood" class="btn btn-success" title="">Submit</button> 
-          </form>
-        </div><!--/.container-->
 
-        <form style="display:none" id="forgotPasswordForm">
-          <div>
-            <h4 class=""><i class="icon-key" style="margin-bottom:10px;"></i>&nbsp;Password Reset</h4>
-            <input type="text" name="forgot_password_email" id="forgot_password_email" placeholder="Enter Your Email"><br>
-            <button type="submit" id="submit_forgot_password" class="btn btn-success" title="">Submit</button>
-            <button type="submit" id="cancel_forgot_password" class="btn btn-default" title="">Cancel</button> <br>
-          </div>
-        </form>
+            <div class="form-group">
+              <label>Origin</label>
+              <select id="origin" name="origin" class="selectpicker">
+                <option>Self Directed</option>
+                <option>Event Driven</option>
+              </select>
+            </div>
 
-        <form style="display:none" id="newUserForm">
-          <div>
-            <h4 class=""><i class="icon-user" style="margin-bottom:10px;"></i>&nbsp;New User Registration</h4>
-            <input type="text" name="new_user_email" id="new_user_email" placeholder="Email"><br> 
-            <input type="text" name="new_user_pass1" id="new_user_pass1" placeholder="Password"><br>
-            <input type="text" name="new_user_pass2" id="new_user_pass2" placeholder="Verify Password"><br>
-            <button type="submit" id="submit_new_user" class="btn btn-success" title="">Submit</button> 
-            <button type="submit" id="cancel_new_user" class="btn btn-default" title="">Cancel</button> <br>
+            <div class="form-group">
+              <label>Energy Level</label>
+              <select id="energy-level" name="energy-level" class="selectpicker">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Your Thoughts</label>
+              <input type="text" id="thoughts" name="thoughts" placeholder="Your Thoughts">
+            </div>
+         </div>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </script>
+
+    <script id="forgot-password-template" type="text/template">
+      <form id="forgot-password-form">
+        <div>
+          <h4 class=""><i class="icon-key" style="margin-bottom:10px;"></i>&nbsp;Password Reset</h4>
+          <p class="status"></p>
+
+          <div class="form-group">
+            <input type="text" name="email" id="email" placeholder="Enter Your Email"><br>
           </div>
-        </form>
-          <br>
-          <div id="user-data">
-            no user yet
+
+          <div class="form-group">
+            <button type="submit" class="btn btn-success" title="">Submit</button>
+            <button type="submit" id="cancel" class="btn btn-default" title="">Cancel</button> <br>
           </div>
         </div>
-      </main>
+      </form>
+    </script>
 
-      <script type="text/javascript" src="phonegap.js"></script> 
-      <script type="text/javascript" src="js/reminders.js"></script>
-      <!--
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js">></script>
-    -->
-      <script type='text/javascript' src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>                
-      <script src="js/bootstrap.min.js"></script>
-      <script type="text/javascript" src="js/index.js"></script>
-      <script src="js/typeahead.bundle.js"></script>
-      <script src="js/mood_matcher.js"></script>
-      <script src="js/mood_controller.js"></script>
-      <script type="text/javascript">
-        window.server_url = "jma-mood-server.herokuapp.com/"
-        window.server_url = "localhost:9393/"
-        app.initialize($('#moodPage'));
-        moodController.initialize($('#moodPage'));
-      </script>
+    <script id="signup-template" type="text/template">
+      <form id="signup-form">
+        <h4><i class="icon-user" style="margin-bottom:10px;"></i> Signup for Mood Minder</h4>
+        <p class="status"></p>
+        <div class="form-group">
+          <p>
+             <input type="text" name="email" id="email" placeholder="Email">
+          </p>
+          <p>
+            <input type="password" name="password" id="password" placeholder="Password">
+          </p>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" title="">Submit</button>
+          <button id="cancel" class="btn btn-default" title="">Cancel</button> <br>
+        </div>
+      </form>
+    </script>
+
   </body>
 </html>
