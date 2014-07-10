@@ -19,9 +19,8 @@
 
 var app = {
     // Application Constructor
-    initialize: function(page) {
-        moodPage = page;
-        this.bindEvents();
+    initialize: function() {
+      this.bindEvents();
     },
     // Bind Event Listeners
     //
@@ -43,6 +42,11 @@ var app = {
     postLogin: function() {
       // Show the mood entry view
       var view = new MoodView();
+      view.render();
+    },
+
+    editReminderSchedule: function() {
+      var view = new ReminderScheduleView();
       view.render();
     },
 
@@ -78,27 +82,22 @@ var app = {
       // and sets 8 reminders, between 8:15am and 9:30pm
       // Reminders.setReminders(8, 15, 9+12, 30);
 
-      SessionsController.determineLoggedInStatus().done(function(resp) {
+      var navBarView = new NavBarView();
+
+      var request = SessionsController.determineLoggedInStatus();
+
+      request.done(function(resp) {
         // This is hacky and will be replaced by local html5 local storage
         // goodness, so we don't depend on the server to tell us if we're logged
         // in or not
-        if(resp === "true") {
-          SessionsController.loggedIn = true;
-        } else {
-          SessionsController.loggedIn = false;
-        }
-
-
-        if(!SessionsController.isLoggedIn()) {
-          this.loginForm();
-        } else {
-          this.postLogin();
-        }
+        SessionsController.loggedIn = true;
+        this.postLogin();
       }.bind(this));
 
-      //app.receivedEvent('deviceready');
-      window.server_url = "jma-mood-server.herokuapp.com/";
-      window.server_url = "localhost:9393/";
+      request.fail(function() {
+        SessionsController.loggedIn = false;
+        this.loginForm();
+      }.bind(this));
     },
 
     /**

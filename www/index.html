@@ -34,6 +34,7 @@
             <li><a href=".#">Setup</a></li>
             <li><a href="#">Forgot Password</a></li>
             <li><a href="#">New User</a></li>
+            <li><a id="reminder-schedule" href="#">Reminder Schedule</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -66,12 +67,13 @@
     <script type="text/javascript" src="js/controllers/moods.js"></script>
     <script type="text/javascript" src="js/controllers/coaches.js"></script>
     <script type="text/javascript" src="js/controllers/sessions.js"></script>
-
     <!-- views -->
     <script type="text/javascript" src="js/views/forgot_password.js"></script>
     <script type="text/javascript" src="js/views/login.js"></script>
     <script type="text/javascript" src="js/views/moods.js"></script>
     <script type="text/javascript" src="js/views/signup.js"></script>
+    <script type="text/javascript" src="js/views/reminder_schedule.js"></script>
+    <script type="text/javascript" src="js/views/navbar.js"></script>
 
     <script type="text/javascript" src="js/index.js"></script>
 
@@ -104,6 +106,10 @@
         <button type="submit" id="forgot-password" class="btn">Forgot Password</button>
         <button type="submit" id="signup" class="btn">Register</button>
       </div>
+    </script>
+
+    <script id="reminder-schedule-template" type="text/template">
+      <h1>Reminder Times</h1>
     </script>
 
     <script id="mood-template" type="text/template">
@@ -180,8 +186,8 @@
         </div>
 
         <div class="form-group">
-          <button type="submit" class="btn btn-success" title="">Submit</button>
-          <button id="cancel" class="btn btn-default" title="">Cancel</button> <br>
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button id="cancel" class="btn btn-default">Cancel</button>
         </div>
       </form>
     </script>
