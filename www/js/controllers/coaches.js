@@ -13,4 +13,4 @@ CoachesController = {
       window.allCoaches = coaches;
     });
   }
-}
+};

@@ -6,11 +6,11 @@ var LoginView = function() {
 
   this.el.find("#forgot-password").click(app.forgotPassword);
   this.el.find("#signup").click(app.signup);
-}
+};
 
 LoginView.prototype.render = function() {
   $("#content").html(this.el);
-}
+};
 
 LoginView.prototype.loginRequest = function(e) {
   e.preventDefault();
@@ -25,4 +25,4 @@ LoginView.prototype.loginRequest = function(e) {
   request.fail(function(resp) {
     this.el.find(".status").text("Invalid Username or Password");
   }.bind(this));
-}
+};

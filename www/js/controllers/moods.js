@@ -2,7 +2,7 @@ MoodStatesController = {
   loadStates: function() {
     return $.get(window.apiURL + "mood-states", "json");
   }
-}
+};
 
 MoodsController = {
   save: function(mood, origin, energyLevel, thoughts) {
@@ -17,4 +17,4 @@ MoodsController = {
                            thoughts: thoughts}
                   });
   }
-}
+};

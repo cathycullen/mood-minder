@@ -3,7 +3,7 @@ var MoodView = function() {
   this.el = $(this.template);
 
   this.el.submit(this.saveMood.bind(this));
-}
+};
 
 MoodView.prototype.render = function() {
   // We can't display the form until we have mood states loaded
@@ -37,7 +37,7 @@ MoodView.prototype.render = function() {
                          });
     $("#content").html(this.el);
   }.bind(this));
-}
+};
 
 MoodView.prototype.saveMood = function(e) {
   e.preventDefault();

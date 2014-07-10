@@ -4,11 +4,11 @@ var ForgotPasswordView = function() {
 
   this.el.submit(this.forgotPasswordRequest.bind(this));
   this.el.find("#cancel").click(app.loginForm);
-}
+};
 
 ForgotPasswordView.prototype.render = function() {
   $("#content").html(this.el);
-}
+};
 
 ForgotPasswordView.prototype.forgotPasswordRequest = function(e) {
   e.preventDefault();
@@ -24,4 +24,4 @@ ForgotPasswordView.prototype.forgotPasswordRequest = function(e) {
   request.fail(function(resp) {
     this.el.find(".status").text("No user exists for that email address.");
   }.bind(this));
-}
+};

@@ -4,11 +4,11 @@ var SignupView = function() {
 
   this.el.submit(this.signupRequest.bind(this));
   this.el.find("#cancel").click(app.loginForm);
-}
+};
 
 SignupView.prototype.render = function() {
   $("#content").html(this.el);
-}
+};
 
 SignupView.prototype.signupRequest = function(e) {
   e.preventDefault();
@@ -23,5 +23,4 @@ SignupView.prototype.signupRequest = function(e) {
   request.fail(function(resp) {
     this.el.find(".status").text("Unable to register.");
   }.bind(this));
-}
-
+};

@@ -43,4 +43,4 @@ SessionsController = {
                    data: {email: email, password: password}
                   });
   }
-}
+};
