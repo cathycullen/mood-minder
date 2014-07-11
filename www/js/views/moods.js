@@ -13,7 +13,7 @@ MoodView.prototype.render = function() {
   if(window.moodStates === undefined || window.moodStates === null ) {
     deferred = MoodStatesController.loadStates();
   } else {
-    deferred = jQuery.deferred();
+    deferred = jQuery.Deferred();
     // since we don't need to make a request to load moods (they're already
     // present locally), resolve this deferred right away
     deferred.resolve();

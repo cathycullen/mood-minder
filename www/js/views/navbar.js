@@ -8,31 +8,31 @@ var NavBarView = function() {
     app.editReminderSchedule();
   }.bind(this));
 
-  this.el.find('#mood').click(function(e)	{
-  	e.preventDefault();
-  	this.el.find(".navbar-collapse").collapse('hide');
+  this.el.find('#mood').click(function(e)  {
+    e.preventDefault();
+    this.el.find(".navbar-collapse").collapse('hide');
 
-  	app.postLogin();
+    app.postLogin();
   }.bind(this));
 
-  this.el.find('#login').click(function(e)	{
-  	e.preventDefault();
-  	this.el.find(".navbar-collapse").collapse('hide');
+  this.el.find('#login').click(function(e)  {
+    e.preventDefault();
+    this.el.find(".navbar-collapse").collapse('hide');
 
-  	app.loginForm();
+    app.loginForm();
   }.bind(this));
 
-   this.el.find('#forgot-password').click(function(e)	{
-  	e.preventDefault();
-  	this.el.find(".navbar-collapse").collapse('hide');
+  this.el.find('#forgot-password').click(function(e)  {
+    e.preventDefault();
+    this.el.find(".navbar-collapse").collapse('hide');
 
-  	app.forgotPassword();
+    app.forgotPassword();
   }.bind(this));
 
-   this.el.find('#signup').click(function(e)	{
-  	e.preventDefault();
-  	this.el.find(".navbar-collapse").collapse('hide');
+  this.el.find('#signup').click(function(e)  {
+    e.preventDefault();
+    this.el.find(".navbar-collapse").collapse('hide');
 
-  	app.signup();
+    app.signup();
   }.bind(this));
-}
+};
