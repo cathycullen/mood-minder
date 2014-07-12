@@ -1,14 +1,21 @@
+// The following line removes all existing reminders
+// and sets 8 reminders, between 8:15am and 9:30pm
+//
+// var schedule = new ReminderSchedule({startHour: 8, startMinutes: 15, endHour: 9+12, endMinutes: 30});
+// Reminders.setReminders(schedule);
+
+
 var Reminders = {
   REMINDER_COUNT: 50,
   MAX_SHIFT: 10,
 
   // Set REMINDER_COUNT between the start hour/minute & end hour/minute
-  setReminders: function(startHour, startMinutes, endHour, endMinutes) {
+  setReminders: function(schedule) {
     this.cancelReminders();
 
     var now = new Date();
-    var start = new Date(now.getYear(), now.getMonth(), now.getDate(), startHour, startMinutes, 0, 0);
-    var end = new Date(now.getYear(), now.getMonth(), now.getDate(), endHour, endMinutes, 0, 0);
+    var start = new Date(now.getYear(), now.getMonth(), now.getDate(), schedule.startHour, schedule.startMinutes, 0, 0);
+    var end = new Date(now.getYear(), now.getMonth(), now.getDate(), schedule.endHour, schedule.endMinutes, 0, 0);
 
     var reminderTimes = this.generateReminderTimes(start, end);
 

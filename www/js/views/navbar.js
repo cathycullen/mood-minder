@@ -42,4 +42,6 @@ var NavBarView = function() {
 
   	app.report();
   }.bind(this));
-}
+
+};
+
