@@ -78,10 +78,6 @@ var app = {
     },
 
     onDeviceReady: function() {
-      // The following line removes all existing reminders
-      // and sets 8 reminders, between 8:15am and 9:30pm
-      // Reminders.setReminders(8, 15, 9+12, 30);
-
       var navBarView = new NavBarView();
 
       var request = SessionsController.determineLoggedInStatus();

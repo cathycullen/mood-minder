@@ -7,4 +7,4 @@ var NavBarView = function() {
 
     app.editReminderSchedule();
   }.bind(this));
-}
+};
