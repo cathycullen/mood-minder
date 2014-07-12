@@ -30,7 +30,7 @@
           <ul class="nav navbar-nav">
             <li><a id="mood" href="#">Moods</a></li>
             <li><a id="login" href="#">Login</a></li>
-            <li><a href="#">Reports</a></li>
+            <li><a id="report" ref="#">Reports</a></li>
             <li><a id="signup" href=".#">Signup</a></li>
             <li><a id="forgot-password" href="#">Forgot Password</a></li>
             <li><a href="#">New User</a></li>
@@ -67,6 +67,7 @@
     <script type="text/javascript" src="js/controllers/moods.js"></script>
     <script type="text/javascript" src="js/controllers/coaches.js"></script>
     <script type="text/javascript" src="js/controllers/sessions.js"></script>
+    <script type="text/javascript" src="js/controllers/reports.js"></script>
     <!-- views -->
     <script type="text/javascript" src="js/views/forgot_password.js"></script>
     <script type="text/javascript" src="js/views/login.js"></script>
@@ -74,6 +75,7 @@
     <script type="text/javascript" src="js/views/signup.js"></script>
     <script type="text/javascript" src="js/views/reminder_schedule.js"></script>
     <script type="text/javascript" src="js/views/navbar.js"></script>
+    <script type="text/javascript" src="js/views/report.js"></script>
 
     <script type="text/javascript" src="js/index.js"></script>
 
@@ -109,7 +111,74 @@
     </script>
 
     <script id="reminder-schedule-template" type="text/template">
-      <h1>Reminder Times</h1>
+      <h4>Reminder Times</h5>
+      <hr>
+      <p class="status"></p>
+    </script>
+
+    <script id="report-template" type="text/template">
+        <form id="reportForm">
+        <h4>Your Mood Report</h4>
+        <p class="status"></p>
+        <div class="container"> 
+
+          <div class="row">
+            <h4>Report Type</h4>
+            <label class="radio-inline">
+              <input name="radioGroup" id="weekly" value="option1" type="radio" checked="">Weekly
+            </label>
+            <label class="radio-inline">
+              <input name="radioGroup" id="monthly" value="option1" type="radio">Monthly
+            </label>
+          </div> 
+          <br>
+          <div class="row">
+            <h4>Report Type</h4>
+            <div class="btn-group" data-toggle="buttons">
+              <label class="btn btn-default active">
+                <input type="radio" id="weekly2">Weekly
+              </label>
+              <label class="btn btn-default">
+                <input type="radio" id="monthly2">Monthly
+              </label>
+            </div>
+          </div>
+          </div> 
+          <br>
+          <div class="table-responsive">
+            <table class="table table-striped table-hover">
+              <thead>
+              <tr>
+                <th>Date/Time</th>
+                  <th>Mood</th>
+                  <th>Source</th>
+                  <th>Thoughts</th>
+                  <th>Level</th>
+              </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td> <span class="name">7-1-2014 2:15 pm</span>
+                </td>
+                <td>Aggravated</td>
+                <td> External</td>
+                <td> Hello</td>
+                <td>1</td>
+            </tr>
+            <tr>
+              <td> <span class="name">7-1-2014 4:10 pm</span>
+                </td>
+                <td>Happy</td>
+                <td> External</td>
+                <td> Goodbye</td>
+                <td>4</td>
+            </tr>
+          </tbody>
+          </table>
+          </div>
+          <br>
+          <button type="submit" id="send" class="btn btn-success">Send to Coach</button>
+        </form>
     </script>
 
     <script id="mood-template" type="text/template">
@@ -136,11 +205,13 @@
             <div class="form-group">
               <label>Energy Level</label>
               <select id="energy-level" name="energy-level" class="selectpicker">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <option>1 Victim (Woe is me)</option>
+                <option>2 Combative (Im right youre wrong</option>
+                <option>3 Avoiding (Not dealing)</option>
+                <option>4 Caretaker (How can I help you? selfless)</option>
+                <option>5 Curosity (lemons into lemonaid)</option>
+                <option>6 Visionary (No judgement.  Accepting what is)</option>
+                <option>7 Creating  (I am passion, unconditional love, transcendence)</option>
               </select>
             </div>
 

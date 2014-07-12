@@ -35,4 +35,11 @@ var NavBarView = function() {
 
   	app.signup();
   }.bind(this));
+
+   this.el.find('#report').click(function(e)	{
+  	e.preventDefault();
+  	this.el.find(".navbar-collapse").collapse('hide');
+
+  	app.report();
+  }.bind(this));
 }
