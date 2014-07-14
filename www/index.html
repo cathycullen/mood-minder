@@ -114,9 +114,72 @@
     </script>
 
     <script id="reminder-schedule-template" type="text/template">
-      <h4>Reminder Times</h5>
+      <h4>Edit Alert Reminder Times</h5>
       <hr>
-      <p class="status"></p>
+
+      <form id="reminderForm">
+        <p class="status"></p>
+          <div id="start">
+          <label for="select">Start Time:</label>
+          <select id="start_hour">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option selected >8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+          </select>
+          <select id="start_min">
+          <option selected >00</option>
+          <option>15</option>
+          <option>30</option>
+          <option>45</option>
+          </select>
+          <select id="start_am_pm">
+          <option selected>am</option>
+          <option>pm</option>
+          </select>
+        </div>
+
+        <div id="end">
+          <label for="select">End Time:&nbsp&nbsp</label>
+          <select id="end_hour">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option selected >8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+          </select>
+          <select id="end_min">
+              <option selected >00</option>
+              <option>15</option>
+              <option>30</option>
+              <option>45</option>
+          </select>
+          <select id="end_am_pm">
+              <option>am</option>
+              <option selected>pm</option>
+          </select>
+        </div>
+        <br>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button id="cancel" class="btn btn-default">Cancel</button>
+        </div>
+      </form>
     </script>
 
     <script id="report-template" type="text/template">
