@@ -34,13 +34,13 @@ SessionsController = {
                   });
   },
 
-  signup: function(email, password) {
+  signup: function(name, email, password, coach, role) {
     return $.ajax({type: "GET",
                    url: window.apiURL + "create-new-user",
                    xhrFields: {
                      withCredentials: true
                    },
-                   data: {email: email, password: password}
+                   data: {name: name, email: email, password: password, coach:coach, role: role}
                   });
   }
 };

@@ -31,7 +31,7 @@
             <li><a id="mood" href="#">Moods</a></li>
             <li><a id="login" href="#">Login</a></li>
             <li><a id="report" ref="#">Reports</a></li>
-            <li><a id="signup" href=".#">Signup</a></li>
+            <li><a id="signup" href="#">Signup</a></li>
             <li><a id="forgot-password" href="#">Forgot Password</a></li>
             <li><a href="#">New User</a></li>
             <li><a id="reminder-schedule" href="#">Reminder Schedule</a></li>
@@ -246,19 +246,35 @@
       </form>
     </script>
 
-    <script id="signup-template" type="text/template">
+     <script id="signup-header-template" type="text/template">
       <form id="signup-form">
         <h4><i class="icon-user" style="margin-bottom:10px;"></i> Signup for Mood Minder</h4>
         <p class="status"></p>
         <div class="form-group">
+          <p>
+             <input type="text" name="name" id="name" placeholder="Name">
+          </p>
           <p>
              <input type="text" name="email" id="email" placeholder="Email">
           </p>
           <p>
             <input type="password" name="password" id="password" placeholder="Password">
           </p>
-        </div>
+          <p>
+            <input type="password" name="verify-password" id="verify-password" placeholder="Verify Password">
+              </select>
+          </p>
+          <p>
+          <div class="form-group">
+              <label>Coach</label>
+              <select id="coach" name="coach" class="selectpicker">
+      </script>
+      
 
+     <script id="signup-footer-template" type="text/template">
+              </select>
+          </p>
+        </div>
         <div class="form-group">
           <button type="submit" class="btn btn-success">Submit</button>
           <button id="cancel" class="btn btn-default">Cancel</button>
