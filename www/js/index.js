@@ -102,7 +102,7 @@ var app = {
       var view = new SignupView();
       view.render();
     },
-
+    
     report: function(e) {
       if(e) {
         e.preventDefault();

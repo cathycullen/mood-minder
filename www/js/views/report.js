@@ -1,10 +1,12 @@
 var ReportView = function() {
-	this.template = $('#report-template').html();
-	this.el = $(this.template);
-  this.el.submit(this.sendReport.bind(this));
+	//this.template = $('#report-template').html();
+	//this.el = $(this.template);
 
   this.header = $('#report-header-template').html();
   this.footer = $('#report-footer-template').html();
+	this.template = this.header +this.footer;
+	this.el = $(this.template);
+  this.el.submit(this.sendReport.bind(this));
 
   this.el.find("#weekly").on('click',function(e){
   	app.weeklyReport();
@@ -33,7 +35,6 @@ ReportView.prototype.render = function() {
 
 ReportView.prototype.sendReport = function(e) {
   e.preventDefault();
-  this.weeklyReport();
   var request = ReportsController.send();
 
   request.done(function(user) {
@@ -56,7 +57,9 @@ ReportView.prototype.weeklyReport = function() {
 	  mood = JSON.parse(resp);
 	  for(var i=0; i< mood.length; i++)
 	  {
-	    append_str += "<tr><td>" + mood[i].created_at + "</td>";
+	  	d = new Date(mood[i].created_at);
+	  	s = parseInt(d.getUTCMonth())+1 +"/"+d.getUTCDay()+"/"+d.getUTCFullYear()+" "+d.getHours()+":"+d.getMinutes();
+	    append_str += "<tr><td>" + s + "</td>";
 	    append_str += "<td>" + mood[i].mood + "</td>";
 	    append_str += "<td>" + mood[i].internal_external + "</td>";
 	    append_str += "<td>" + mood[i].thoughts + "</td>";
@@ -85,7 +88,9 @@ ReportView.prototype.monthlyReport = function() {
 	  mood = JSON.parse(resp);
 	  for(var i=0; i< mood.length; i++)
 	  {
-	    append_str += "<tr><td>" + mood[i].created_at + "</td>";
+	  	d = new Date(mood[i].created_at);
+	  	s = parseInt(d.getUTCMonth())+1 +"/"+d.getUTCDay()+"/"+d.getUTCFullYear()+" "+d.getHours()+":"+d.getMinutes();
+	    append_str += "<tr><td>" + s + "</td>";
 	    append_str += "<td>" + mood[i].mood + "</td>";
 	    append_str += "<td>" + mood[i].internal_external + "</td>";
 	    append_str += "<td>" + mood[i].thoughts + "</td>";
