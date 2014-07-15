@@ -86,7 +86,7 @@ var app = {
       view.monthlyReport();
     },
 
-     coaches: function(e) {
+     loadCoaches: function(e) {
       if(e) {
         e.preventDefault();
       }
@@ -121,7 +121,7 @@ var app = {
         // This is hacky and will be replaced by local html5 local storage
         // goodness, so we don't depend on the server to tell us if we're logged
         // in or not
-        this.coaches();
+        this.loadCoaches();
         SessionsController.loggedIn = true;
         this.postLogin();
       }.bind(this));

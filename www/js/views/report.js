@@ -3,7 +3,8 @@ var ReportView = function() {
 	this.el = $(this.template);
   this.el.submit(this.sendReport.bind(this));
 
-  //this.el.find("#weekly").click(this.weeklyReport);
+  this.header = $('#report-header-template').html();
+  this.footer = $('#report-footer-template').html();
 
   this.el.find("#weekly").on('click',function(e){
   	app.weeklyReport();
@@ -50,10 +51,53 @@ ReportView.prototype.weeklyReport = function() {
 
 	request.done(function(resp) {
 	  this.el.find(".status").text("Last Week Report Succeeded");
+
+	  var append_str="";
+	  mood = JSON.parse(resp);
+	  for(var i=0; i< mood.length; i++)
+	  {
+	    append_str += "<tr><td>" + mood[i].created_at + "</td>";
+	    append_str += "<td>" + mood[i].mood + "</td>";
+	    append_str += "<td>" + mood[i].internal_external + "</td>";
+	    append_str += "<td>" + mood[i].thoughts + "</td>";
+	    append_str += "<td>" + mood[i].energy_level + "</td></tr>";
+	  } 
+	  this.template = this.header +append_str + this.footer;
+	  this.el = $(this.template);
+		$("#content").html(this.el);
+	  // call render
+
 	}.bind(this));
 
 	request.fail(function(resp) {
 	  this.el.find(".status").text("Last week Report Failed.");
+	}.bind(this));
+};
+
+ReportView.prototype.monthlyReport = function() {
+
+	var request = ReportsController.lastMonthReport();
+
+	request.done(function(mood) {
+
+	  this.el.find(".status").text("Last Month Report Succeeded");
+	  var append_str="";
+	  mood = JSON.parse(resp);
+	  for(var i=0; i< mood.length; i++)
+	  {
+	    append_str += "<tr><td>" + mood[i].created_at + "</td>";
+	    append_str += "<td>" + mood[i].mood + "</td>";
+	    append_str += "<td>" + mood[i].internal_external + "</td>";
+	    append_str += "<td>" + mood[i].thoughts + "</td>";
+	    append_str += "<td>" + mood[i].energy_level + "</td></tr>";
+	  } 
+	  this.template = this.header +append_str + this.footer;
+	  this.el = $(this.template);
+		$("#content").html(this.el);
+	}.bind(this));
+
+	request.fail(function(resp) {
+	  this.el.find(".status").text("Last month Report Failed.");
 	}.bind(this));
 };
 
