@@ -40,6 +40,7 @@ ReminderScheduleView.prototype.setReminderSchedule = function(e) {
   var schedule = new ReminderSchedule({startHour: start_hour, startMinutes: start_min, endHour: end_hour, endMinutes: end_min});
   LocalSettings.setReminderSchedule(schedule);
  	Reminders.setReminders(schedule);
+  this.el.find(".status").text("MoodMinder reminders have been set.");
 
 };
 

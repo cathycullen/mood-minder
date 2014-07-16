@@ -30,7 +30,7 @@ SignupView.prototype.signupRequest = function(e) {
 
   request.done(function(user) {
     window.currentUser = user;
-    app.postLogin();
+    app.loginForm();
   }.bind(this));
 
   request.fail(function(resp) {
