@@ -10,22 +10,22 @@ var ReportView = function() {
 
   this.el.find("#weekly").on('click',function(e){
   	app.weeklyReport();
-  	console.log("A weekly eport type was chosen");
+  	console.log("A weekly report type was chosen");
 	});
 
 	this.el.find("#weekly2").on('click',function(e){
   	app.weeklyReport();
-  	console.log("A weekly eport type was chosen");
+  	console.log("A weekly report type was chosen");
 	});
 
 	this.el.find("#monthly").on('click',function(e){
   	app.monthlyReport();
-  	console.log("A monthly eport type was chosen");
+  	console.log("A monthly report type was chosen");
 	});
 
 	this.el.find("#monthly2").on('click',function(e){
   	app.monthlyReport();
-  	console.log("A monthly eport type was chosen");
+  	console.log("A monthly report type was chosen");
 	});
 };
 

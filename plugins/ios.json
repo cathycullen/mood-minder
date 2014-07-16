@@ -4,7 +4,6 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {},
         "config.xml": {
             "/*": {
                 "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>": 1,
