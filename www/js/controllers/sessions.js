@@ -1,5 +1,6 @@
 SessionsController = {
   loggedIn: false,
+
   login: function(email, password) {
     return $.ajax({type: "GET",
                    url: window.apiURL + "submit-login",

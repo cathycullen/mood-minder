@@ -22,7 +22,7 @@ LoginView.prototype.loginRequest = function(e) {
     app.postLogin();
   }.bind(this));
 
-  request.fail(function(resp) {
+  request.fail(function(jqxhr) {
     this.el.find(".status").text("Invalid Username or Password");
   }.bind(this));
 };
