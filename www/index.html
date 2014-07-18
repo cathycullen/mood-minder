@@ -16,27 +16,6 @@
 
   <body>
     <nav class="navbar navbar-default navbar-inverse" role="navigation">
-      <div class="container-fluid" id="navfluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">MoodMinder</a>
-        </div>
-        <div class="collapse navbar-collapse" id="navigationbar">
-          <ul class="nav navbar-nav">
-            <li><a id="mood" href="#">Moods</a></li>
-            <li><a id="login" href="#">Login</a></li>
-            <li><a id="report" ref="#">Reports</a></li>
-            <li><a id="signup" href="#">New User</a></li>
-            <li><a id="forgot-password" href="#">Forgot Password</a></li>
-            <li><a id="reminder-schedule" href="#">Reminder Schedule</a></li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
     </nav>
 
 
@@ -92,6 +71,36 @@
       app.initialize();
     </script>
 
+
+    <script id="nav-template" type="text/template">
+      <div class="container-fluid" id="navfluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigationbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">MoodMinder</a>
+        </div>
+        <div class="collapse navbar-collapse" id="navigationbar">
+          <ul class="nav navbar-nav">
+            <% if(loggedIn) { %>
+              <li><a id="mood" href="#">Record a Mood</a></li>
+              <li><a id="report" ref="#">Reports</a></li>
+              <li><a id="reminder-schedule" href="#">Reminder Schedule</a></li>
+            <% } %>
+
+            <% if(!loggedIn) { %>
+              <li><a id="login" href="#">Login</a></li>
+              <li><a id="signup" href="#">Signup</a></li>
+              <li><a id="forgot-password" href="#">Forgot Password</a></li>
+            <% } %>
+
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </script>
 
     <script id="login-template" type="text/template">
       <form class="bs-example" id="login">

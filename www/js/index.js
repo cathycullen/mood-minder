@@ -40,6 +40,7 @@ var app = {
     },
 
     postLogin: function() {
+      this.navBarView.render();
       // Show the mood entry view
       var view = new MoodView();
       view.render();
@@ -76,7 +77,7 @@ var app = {
       var view = new ReportView();
       view.weeklyReport();
     },
-    
+
     monthlyReport: function(e) {
       if(e) {
         e.preventDefault();
@@ -90,8 +91,8 @@ var app = {
       if(e) {
         e.preventDefault();
       }
-      
-    CoachesController.load();
+
+      CoachesController.load();
     },
 
     signup: function(e) {
@@ -102,7 +103,7 @@ var app = {
       var view = new SignupView();
       view.render();
     },
-    
+
     report: function(e) {
       if(e) {
         e.preventDefault();
@@ -113,7 +114,8 @@ var app = {
     },
 
     onDeviceReady: function() {
-      var navBarView = new NavBarView();
+      this.navBarView = new NavBarView();
+      this.navBarView.render();
 
       var request = SessionsController.determineLoggedInStatus();
 
