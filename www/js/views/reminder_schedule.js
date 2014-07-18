@@ -1,8 +1,7 @@
 var ReminderScheduleView = function() {
- this.template = $("#reminder-schedule-template").html();
- this.el = $(this.template);
+ this.template = _.template($("#reminder-schedule-template").html());
 
-
+ this.el = $(this.template(LocalSettings.getReminderSchedule()));
 
   this.el.submit(this.setReminderSchedule.bind(this));
 };
@@ -23,25 +22,29 @@ ReminderScheduleView.prototype.setReminderSchedule = function(e) {
   var end_am_pm = this.el.find("#end_am_pm").val();
 
   if (start_am_pm == "pm") {
-  	start_hour += 12;
+   start_hour += 12;
   }
   if (end_am_pm == "pm") {
-  	end_hour += 12;
-  }
-  if (start_am_pm == "am" && start_hour == 12) {
-  	start_hour = 0;
+   end_hour += 12;
   }
 
-  if (end_am_pm == "am" && end_hour == 12) {
-  	end_hour = 0;
+  if(start_am_pm == "am" && start_hour == 12) {
+    start_hour = 0;
+  }
+
+  if(end_am_pm == "am" && end_hour == 12) {
+    end_hour = 0;
   }
 
   console.log ("Start time: "+start_hour+":"+start_min+ "   End Time: "+end_hour+ " "+end_min);
-  var schedule = new ReminderSchedule({startHour: start_hour, startMinutes: start_min, endHour: end_hour, endMinutes: end_min});
+  var schedule = new ReminderSchedule({startHour: start_hour,
+                                       startMinutes: start_min,
+                                       endHour: end_hour,
+                                       endMinutes: end_min});
   LocalSettings.setReminderSchedule(schedule);
- 	Reminders.setReminders(schedule);
-  this.el.find(".status").text("MoodMinder reminders have been set.");
+  Reminders.setReminders(schedule);
 
+  this.el.find(".status").text("MoodMinder reminders have been set.");
 };
 
 

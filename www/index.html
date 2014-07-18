@@ -58,6 +58,7 @@
     <script type="text/javascript" src="js/vendor/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/vendor/typeahead.bundle.js"></script>
     <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/vendor/underscore.js"></script>
 
     <!-- App JS -->
     <!-- models -->
@@ -121,56 +122,40 @@
           <div id="start">
           <label for="select">Start Time:</label>
           <select id="start_hour">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option selected >8</option>
-          <option>9</option>
-          <option>10</option>
-          <option>11</option>
-          <option>12</option>
+            <% _.each([1,2,3,4,5,6,7,8,9,10,11,12], function(hour) { %>
+              <option <%= startHourIn12() === hour ? 'selected' : ''%>><%=hour%></option>
+
+            <% }); %>
           </select>
           <select id="start_min">
-          <option selected >00</option>
-          <option>15</option>
-          <option>30</option>
-          <option>45</option>
+            <% _.each(["00", "15", "30", "45"], function(minutes) { %>
+              <option <%= startMinutes === parseInt(minutes) ? 'selected' : ''%>><%=minutes%></option>
+
+            <% }); %>
           </select>
           <select id="start_am_pm">
-          <option selected>am</option>
-          <option>pm</option>
+            <option <%= startTimeMeridiem() === "am" ? 'selected' : ''%>>am</option>
+            <option <%= startTimeMeridiem() === "pm" ? 'selected' : ''%>>pm</option>
           </select>
         </div>
 
         <div id="end">
           <label for="select">End Time:&nbsp&nbsp</label>
           <select id="end_hour">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              <option>6</option>
-              <option>7</option>
-              <option selected >8</option>
-              <option>9</option>
-              <option>10</option>
-              <option>11</option>
-              <option>12</option>
+            <% _.each([1,2,3,4,5,6,7,8,9,10,11,12], function(hour) { %>
+              <option <%= endHourIn12() === hour ? 'selected' : ''%>><%=hour%></option>
+
+            <% }); %>
           </select>
           <select id="end_min">
-              <option selected >00</option>
-              <option>15</option>
-              <option>30</option>
-              <option>45</option>
+            <% _.each(["00", "15", "30", "45"], function(minutes) { %>
+              <option <%= endMinutes === parseInt(minutes) ? 'selected' : ''%>><%=minutes%></option>
+
+            <% }); %>
           </select>
           <select id="end_am_pm">
-              <option>am</option>
-              <option selected>pm</option>
+            <option <%= endTimeMeridiem() === "am" ? 'selected' : ''%>>am</option>
+            <option <%= endTimeMeridiem() === "pm" ? 'selected' : ''%>>pm</option>
           </select>
         </div>
         <br>
@@ -245,55 +230,55 @@
 
 
 
- <script id="report-header-template" type="text/template">
-        <form id="reportForm">
-        <h4>Your Mood Report</h4>
-        <p class="status"></p>
-        <div class="container"> 
-          <div class="row">
-            <h4>Report Type</h4>
-            <label class="radio-inline">
-              <input name="radioGroup" id="weekly" value="option1" type="radio" checked="">Weekly
+  <script id="report-header-template" type="text/template">
+    <form id="reportForm">
+      <h4>Your Mood Report</h4>
+      <p class="status"></p>
+      <div class="container"> 
+        <div class="row">
+          <h4>Report Type</h4>
+          <label class="radio-inline">
+            <input name="radioGroup" id="weekly" value="option1" type="radio" checked="">Weekly
+          </label>
+          <label class="radio-inline">
+            <input name="radioGroup" id="monthly" value="option1" type="radio">Monthly
+          </label>
+        </div> 
+        <br>
+        <div class="row">
+          <h4>Report Type</h4>
+          <div class="btn-group" data-toggle="buttons">
+            <label class="btn btn-default active">
+              <input type="radio" id="weekly2">Weekly
             </label>
-            <label class="radio-inline">
-              <input name="radioGroup" id="monthly" value="option1" type="radio">Monthly
+            <label class="btn btn-default">
+              <input type="radio" id="monthly2">Monthly
             </label>
-          </div> 
-          <br>
-          <div class="row">
-            <h4>Report Type</h4>
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-default active">
-                <input type="radio" id="weekly2">Weekly
-              </label>
-              <label class="btn btn-default">
-                <input type="radio" id="monthly2">Monthly
-              </label>
-            </div>
           </div>
-          </div> 
-          <br>
-          <div class="table-responsive">
-            <table class="table table-striped table-hover">
-              <thead>
-              <tr>
-                <th>Date/Time</th>
-                  <th>Mood</th>
-                  <th>Source</th>
-                  <th>Thoughts</th>
-                  <th>Level</th>
-              </tr>
-            </thead>
-            <tbody>
+        </div>
+        </div> 
+        <br>
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+              <th>Date/Time</th>
+                <th>Mood</th>
+                <th>Source</th>
+                <th>Thoughts</th>
+                <th>Level</th>
+            </tr>
+          </thead>
+          <tbody>
     </script>
-    
+
     <script id="report-footer-template" type="text/template">
-        </tbody>
+            </tbody>
           </table>
-          </div>
-          <br>
-          <button type="submit" id="send" class="btn btn-success">Send to Coach</button>
-        </form>
+        </div>
+        <br>
+        <button type="submit" id="send" class="btn btn-success">Send to Coach</button>
+      </form>
     </script>
 
 
@@ -382,7 +367,7 @@
               <label>Coach</label>
               <select id="coach" name="coach" class="selectpicker">
       </script>
-      
+
 
      <script id="signup-footer-template" type="text/template">
               </select>

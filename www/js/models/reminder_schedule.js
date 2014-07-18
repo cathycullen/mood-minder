@@ -18,6 +18,7 @@ ReminderSchedule.prototype.isValidSchedule = function(options) {
     return false;
   }
 };
+
 ReminderSchedule.prototype.isValidHour = function(hour) {
   if(hour !== undefined && hour >= 0 && hour <= 23) {
     return true;
@@ -31,5 +32,37 @@ ReminderSchedule.prototype.isValidMinutes = function(minutes) {
     return true;
   } else {
     return false;
+  }
+};
+
+ReminderSchedule.prototype.startHourIn12 = function() {
+  if(this.startHour >= 12) {
+    return this.startHour-12;
+  } else {
+    return this.startHour;
+  }
+};
+
+ReminderSchedule.prototype.endHourIn12 = function() {
+  if(this.endHour >= 12) {
+    return this.endHour-12;
+  } else {
+    return this.endHour;
+  }
+};
+
+ReminderSchedule.prototype.startTimeMeridiem = function() {
+  if(this.startHour >= 12) {
+    return "pm";
+  } else {
+    return "am";
+  }
+};
+
+ReminderSchedule.prototype.endTimeMeridiem = function() {
+  if(this.endHour >= 12) {
+    return "pm";
+  } else {
+    return "am";
   }
 };
