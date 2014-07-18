@@ -19,6 +19,7 @@ LoginView.prototype.loginRequest = function(e) {
 
   request.done(function(user) {
     window.currentUser = user;
+    LocalSettings.setCurrentUserToken(user.token);
     SessionsController.loggedIn = true;
     app.postLogin();
   }.bind(this));

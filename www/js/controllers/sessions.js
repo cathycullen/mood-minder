@@ -4,9 +4,6 @@ SessionsController = {
   login: function(email, password) {
     return $.ajax({type: "GET",
                    url: window.apiURL + "submit-login",
-                   xhrFields: {
-                     withCredentials: true
-                   },
                    data: {email: email, password: password},
                    dataType: "json"
                   });
@@ -19,18 +16,13 @@ SessionsController = {
   determineLoggedInStatus: function() {
     return $.ajax({type: "GET",
                    url: window.apiURL + "logged-in",
-                   xhrFields: {
-                     withCredentials: true
-                   }
+                   data: {token: LocalSettings.getCurrentUserToken()},
                   });
   },
 
   requestPasswordReset: function(email) {
     return $.ajax({type: "GET",
                    url: window.apiURL + "forgot-password",
-                   xhrFields: {
-                     withCredentials: true
-                   },
                    data: {email: email}
                   });
   },
@@ -38,10 +30,7 @@ SessionsController = {
   signup: function(name, email, password, coach, role) {
     return $.ajax({type: "GET",
                    url: window.apiURL + "create-new-user",
-                   xhrFields: {
-                     withCredentials: true
-                   },
-                   data: {name: name, email: email, password: password, coach:coach, role: role}
+                   data: {name: name, email: email, password: password, coach: coach, role: role}
                   });
   }
 };

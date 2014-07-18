@@ -4,9 +4,7 @@ CoachesController = {
       type: "GET",
       url: window.apiURL + "all-coaches",
       dataType: "json",
-      xhrFields: {
-        withCredentials: true
-      }
+      data: {token: LocalSettings.getCurrentUserToken()}
     });
 
     request.success(function(coaches) {
