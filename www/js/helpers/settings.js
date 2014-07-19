@@ -8,7 +8,12 @@ var LocalSettings = {
   },
 
   getReminderSchedule: function() {
-    return new ReminderSchedule(JSON.parse(this.db.getItem(this.reminderScheduleKey)));
+    var schedule = this.db.getItem(this.reminderScheduleKey);
+    if(schedule) {
+      return new ReminderSchedule(JSON.parse(schedule));
+    } else {
+      return ReminderSchedule.defaultSchedule();
+    }
   },
 
   setCurrentUserToken: function(token) {

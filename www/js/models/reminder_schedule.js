@@ -9,6 +9,10 @@ var ReminderSchedule = function(options) {
   }
 };
 
+ReminderSchedule.defaultSchedule = function() {
+  return new ReminderSchedule({startHour: 9, startMinutes: 00, endHour: 8+12, endMinutes: 30});
+}
+
 ReminderSchedule.prototype.isValidSchedule = function(options) {
   if(this.isValidHour(options.startHour) && this.isValidHour(options.endHour) &&
      options.startHour <= options.endHour &&

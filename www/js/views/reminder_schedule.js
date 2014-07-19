@@ -1,13 +1,16 @@
 var ReminderScheduleView = function() {
- this.template = _.template($("#reminder-schedule-template").html());
+  this.template = _.template($("#reminder-schedule-template").html());
 
- this.el = $(this.template(LocalSettings.getReminderSchedule()));
+  this.el = $(this.template(LocalSettings.getReminderSchedule()));
 
   this.el.submit(this.setReminderSchedule.bind(this));
 };
 
 ReminderScheduleView.prototype.render = function() {
-  $("#content").html(this.el);
+  window.plugin.notification.local.getScheduledIds(function(scheduledIds) {
+    $("#content").html(this.el);
+    // $("#content").append("<p>" + scheduledIds.length + " reminders scheduled");
+  }.bind(this));
 };
 
 
@@ -44,7 +47,7 @@ ReminderScheduleView.prototype.setReminderSchedule = function(e) {
   LocalSettings.setReminderSchedule(schedule);
   Reminders.setReminders(schedule);
 
-  this.el.find(".status").text("MoodMinder reminders have been set.");
+  this.el.find(".status").text("Reminder schedule has been saved.");
 };
 
 

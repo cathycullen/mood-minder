@@ -6,7 +6,7 @@
 
 
 var Reminders = {
-  REMINDER_COUNT: 50,
+  REMINDER_COUNT: 8,
   MAX_SHIFT: 10,
 
   // Set REMINDER_COUNT between the start hour/minute & end hour/minute
@@ -34,7 +34,11 @@ var Reminders = {
   },
 
   cancelReminders: function() {
-    window.plugin.notification.local.cancelAll();
+    window.plugin.notification.local.getScheduledIds(function(scheduledIds) {
+      for(var i=0; scheduledIds.length > i; i++) {
+        window.plugin.notification.local.cancel(scheduledIds[i]);
+      }
+    });
   },
 
   generateReminderTimes: function(start, end) {
