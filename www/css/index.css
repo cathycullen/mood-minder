@@ -161,6 +161,33 @@ body {
   font-size: 1.3em;
 }
 
+.full-width {
+  width: 100%;
+}
+#moodForm {
+  margin-top: 2em;
+}
+#thoughts {
+  height: 4em;
+}
+
+#reminderForm {
+  margin-top: 2em;
+}
+
+#reminderForm label {
+  width: 30%;
+}
+
+.logo {
+  text-align: center;
+  margin-top: 1em;
+}
+
+#signup-form label {
+  width: 30%;
+}
+
 @keyframes fade {
     from { opacity: 1.0; }
     50% { opacity: 0.4; }

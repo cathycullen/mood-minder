@@ -87,7 +87,7 @@
         <div class="collapse navbar-collapse" id="navigationbar">
           <ul class="nav navbar-nav">
             <% if(loggedIn) { %>
-              <li><a id="mood" href="#">Record a Mood</a></li>
+              <li><a id="mood" href="#">Report a Mood</a></li>
               <li><a id="report" ref="#">Reports</a></li>
               <li><a id="reminder-schedule" href="#">Reminder Schedule</a></li>
             <% } %>
@@ -105,14 +105,21 @@
 
     <script id="login-template" type="text/template">
       <div class="hz-padding">
+
+        <div class="logo">
+          <img src="img/logo.png"/>
+        </div>
+
         <form class="bs-example" id="login">
           <p class="status"></p>
           <div class="form-group">
-            <label for="inputEmail" >Email</label>
+            <label for="email" >Email</label>
             <input type="email" class="form-control" name="email" id="email" placeholder="Your Email Address">
-            <label for="inputPassword">Password</label>
+
+            <label for="password">Password</label>
             <input type="password" class="form-control" name="password" id="password" placeholder="Password">
           </div>
+
           <div class="form-group">
             <button type="submit" class="btn btn-success">Login</button>
           </div>
@@ -127,13 +134,16 @@
 
     <script id="reminder-schedule-template" type="text/template">
       <div class="hz-padding">
-        <h4>Edit Alert Reminder Times</h5>
-        <hr>
+        <h4>Reminders</h5>
+        <p class="no-case">MoodMinder will remind you to record your mood
+        <strong>eight times per day</strong>,
+        between your start and end times.</p>
 
         <form id="reminderForm">
           <p class="status"></p>
-            <div id="start">
-            <label for="select">Start Time:</label>
+
+          <div id="start">
+            <label for="select">Start Time</label>
             <select id="start_hour">
               <% _.each([1,2,3,4,5,6,7,8,9,10,11,12], function(hour) { %>
                 <option <%= startHourIn12() === hour ? 'selected' : ''%>><%=hour%></option>
@@ -152,8 +162,10 @@
             </select>
           </div>
 
+          <br/>
+
           <div id="end">
-            <label for="select">End Time:&nbsp&nbsp</label>
+            <label for="select">End Time</label>
             <select id="end_hour">
               <% _.each([1,2,3,4,5,6,7,8,9,10,11,12], function(hour) { %>
                 <option <%= endHourIn12() === hour ? 'selected' : ''%>><%=hour%></option>
@@ -244,12 +256,12 @@
           <div class="clearfix">
 
             <div class="form-group">
-              <label>Your Current State</label>
+              <label>Your Current State</label><br/>
               <input type="text" id="mood" name="mood" placeholder="Your Current State">
             </div>
 
             <div class="form-group">
-              <label>Origin</label>
+              <label>Origin</label><br/>
               <select id="origin" name="origin" class="selectpicker">
                 <option>Self Directed</option>
                 <option>Event Driven</option>
@@ -270,8 +282,8 @@
             </div>
 
             <div class="form-group">
-              <label>Your Thoughts</label>
-              <input type="text" id="thoughts" name="thoughts" placeholder="Your Thoughts">
+              <label>Your Thoughts</label><br/>
+              <textarea class="full-width" id="thoughts" name="thoughts"></textarea>
             </div>
          </div>
         </div>
@@ -283,7 +295,12 @@
   <script id="forgot-password-template" type="text/template">
     <form class="hz-padding" id="forgot-password-form">
       <div>
-        <h4 class=""><i class="icon-key" style="margin-bottom:10px;"></i>&nbsp;Password Reset</h4>
+        <div class="logo">
+          <img src="img/logo.png"/>
+        </div>
+
+        <h4>Password Reset</h4>
+
         <p class="status"></p>
 
         <div class="form-group">
@@ -299,38 +316,44 @@
   </script>
 
   <script id="signup-header-template" type="text/template">
-    <form class="hz-padding" id="signup-form">
-      <p class="status"></p>
-      <div class="form-group">
-        <p>
-           <input type="text" name="name" id="name" placeholder="Name">
-        </p>
-        <p>
-           <input type="text" name="email" id="email" placeholder="Email">
-        </p>
-        <p>
-          <input type="password" name="password" id="password" placeholder="Password">
-        </p>
-        <p>
-          <input type="password" name="verify-password" id="verify-password" placeholder="Verify Password">
-            </select>
-        </p>
-        <p>
+    <div class="hz-padding">
+      <div class="logo">
+        <img src="img/logo.png"/>
+      </div>
+      <h4 class="no-case">New to MoodMinder?</h4>
+
+      <form id="signup-form">
+        <p class="status"></p>
         <div class="form-group">
+          <p>
+             <label for="name">Name</label>
+             <input type="text" name="name" id="name">
+          </p>
+          <p>
+             <label for="name">Email</label>
+             <input type="email" name="email" id="email">
+          </p>
+          <p>
+            <label for="name">Password</label>
+            <input type="password" name="password" id="password">
+          </p>
+          <p>
+          <div class="form-group">
             <label>Coach</label>
             <select id="coach" name="coach" class="selectpicker">
   </script>
 
 
   <script id="signup-footer-template" type="text/template">
-          </select>
-        </p>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-success">Submit</button>
-        <button id="cancel" class="btn btn-default">Cancel</button>
-      </div>
-    </form>
+            </select>
+          </p>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">Submit</button>
+          <button id="cancel" class="btn btn-default">Cancel</button>
+        </div>
+      </form>
+    </div>
   </script>
 
   </body>
