@@ -70,24 +70,6 @@ var app = {
       view.render();
     },
 
-    weeklyReport: function(e) {
-      if(e) {
-        e.preventDefault();
-      }
-      // Show the weekly report
-      var view = new ReportView();
-      view.weeklyReport();
-    },
-
-    monthlyReport: function(e) {
-      if(e) {
-        e.preventDefault();
-      }
-      // Show the monthly report
-      var view = new ReportView();
-      view.monthlyReport();
-    },
-
     signup: function(e) {
       if(e) {
         e.preventDefault();

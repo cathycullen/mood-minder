@@ -1,36 +1,23 @@
 var ReportView = function() {
-	//this.template = $('#report-template').html();
-	//this.el = $(this.template);
+  this.template = _.template($('#report-view-template').html());
+  this.tableTemplate = _.template($('#report-results-template').html());
 
-  this.header = $('#report-header-template').html();
-  this.footer = $('#report-footer-template').html();
-	this.template = this.header +this.footer;
-	this.el = $(this.template);
+  this.el = $(this.template({}));
   this.el.submit(this.sendReport.bind(this));
 
   this.el.find("#weekly").on('click',function(e){
-  	app.weeklyReport();
-  	console.log("A weekly report type was chosen");
-	});
+    this.weeklyReport();
+    console.log("A weekly report type was chosen");
+  }.bind(this));
 
-	this.el.find("#weekly2").on('click',function(e){
-  	app.weeklyReport();
-  	console.log("A weekly report type was chosen");
-	});
-
-	this.el.find("#monthly").on('click',function(e){
-  	app.monthlyReport();
-  	console.log("A monthly report type was chosen");
-	});
-
-	this.el.find("#monthly2").on('click',function(e){
-  	app.monthlyReport();
-  	console.log("A monthly report type was chosen");
-	});
+  this.el.find("#monthly").on('click',function(e){
+    this.monthlyReport();
+    console.log("A monthly report type was chosen");
+  }.bind(this));
 };
 
 ReportView.prototype.render = function() {
-	$("#content").html(this.el);
+  $("#content").html(this.el);
 }
 
 ReportView.prototype.sendReport = function(e) {
@@ -47,62 +34,28 @@ ReportView.prototype.sendReport = function(e) {
 };
 
 ReportView.prototype.weeklyReport = function() {
+  var request = ReportsController.lastWeekReport();
 
-	var request = ReportsController.lastWeekReport();
+  request.done(function(moods) {
+    this.el.find("#send").removeAttr('disabled');
+    this.el.find("#table-container").html(this.tableTemplate({moods: moods}));
+  }.bind(this));
 
-	request.done(function(resp) {
-	  this.el.find(".status").text("Last Week Report Succeeded");
-
-	  var append_str="";
-	  mood = JSON.parse(resp);
-	  for(var i=0; i< mood.length; i++)
-	  {
-	  	d = new Date(mood[i].created_at);
-	  	s = parseInt(d.getUTCMonth())+1 +"/"+d.getUTCDay()+"/"+d.getUTCFullYear()+" "+d.getHours()+":"+d.getMinutes();
-	    append_str += "<tr><td>" + s + "</td>";
-	    append_str += "<td>" + mood[i].mood + "</td>";
-	    append_str += "<td>" + mood[i].internal_external + "</td>";
-	    append_str += "<td>" + mood[i].thoughts + "</td>";
-	    append_str += "<td>" + mood[i].energy_level + "</td></tr>";
-	  } 
-	  this.template = this.header +append_str + this.footer;
-	  this.el = $(this.template);
-		$("#content").html(this.el);
-	  // call render
-
-	}.bind(this));
-
-	request.fail(function(resp) {
-	  this.el.find(".status").text("Last week Report Failed.");
-	}.bind(this));
+  request.fail(function(resp) {
+    this.el.find(".status").text("Unable to load moods from server.");
+  }.bind(this));
 };
 
 ReportView.prototype.monthlyReport = function() {
+  var request = ReportsController.lastMonthReport();
 
-	var request = ReportsController.lastMonthReport();
+  request.done(function(moods) {
+    this.el.find("#send").removeAttr('disabled');
+    this.el.find("#table-container").html(this.tableTemplate({moods: moods}));
+  }.bind(this));
 
-	request.done(function(mood) {
-
-	  this.el.find(".status").text("Last Month Report Succeeded");
-	  var append_str="";
-	  mood = JSON.parse(resp);
-	  for(var i=0; i< mood.length; i++)
-	  {
-	  	d = new Date(mood[i].created_at);
-	  	s = parseInt(d.getUTCMonth())+1 +"/"+d.getUTCDay()+"/"+d.getUTCFullYear()+" "+d.getHours()+":"+d.getMinutes();
-	    append_str += "<tr><td>" + s + "</td>";
-	    append_str += "<td>" + mood[i].mood + "</td>";
-	    append_str += "<td>" + mood[i].internal_external + "</td>";
-	    append_str += "<td>" + mood[i].thoughts + "</td>";
-	    append_str += "<td>" + mood[i].energy_level + "</td></tr>";
-	  } 
-	  this.template = this.header +append_str + this.footer;
-	  this.el = $(this.template);
-		$("#content").html(this.el);
-	}.bind(this));
-
-	request.fail(function(resp) {
-	  this.el.find(".status").text("Last month Report Failed.");
-	}.bind(this));
+  request.fail(function(resp) {
+    this.el.find(".status").text("Unable to load moods from server.");
+  }.bind(this));
 };
 

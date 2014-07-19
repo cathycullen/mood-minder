@@ -175,183 +175,119 @@
       </form>
     </script>
 
-    <script id="report-template" type="text/template">
-        <form id="reportForm">
-        <h4>Your Mood Report</h4>
-        <p class="status"></p>
-        <div class="container"> 
-          <div class="row">
-            <h4>Report Type</h4>
-            <label class="radio-inline">
-              <input name="radioGroup" id="weekly" value="option1" type="radio" checked="">Weekly
-            </label>
-            <label class="radio-inline">
-              <input name="radioGroup" id="monthly" value="option1" type="radio">Monthly
-            </label>
-          </div> 
-          <br>
-          <div class="row">
-            <h4>Report Type</h4>
-            <div class="btn-group" data-toggle="buttons">
-              <label class="btn btn-default active">
-                <input type="radio" id="weekly2">Weekly
-              </label>
-              <label class="btn btn-default">
-                <input type="radio" id="monthly2">Monthly
-              </label>
-            </div>
-          </div>
-          </div> 
-          <br>
-          <div class="table-responsive">
-            <table class="table table-striped table-hover">
-              <thead>
-              <tr>
-                <th>Date/Time</th>
-                  <th>Mood</th>
-                  <th>Source</th>
-                  <th>Thoughts</th>
-                  <th>Level</th>
-              </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td>7-1-2014 2:15 pm</td>
-                <td>Aggravated</td>
-                <td> External</td>
-                <td> Hello</td>
-                <td>1</td>
-            </tr>
-            <tr>
-              <td>7-1-2014 4:10 pm</td>
-                <td>Happy</td>
-                <td> External</td>
-                <td> Goodbye</td>
-                <td>4</td>
-            </tr>
-          </tbody>
-          </table>
-          </div>
-          <br>
-          <button type="submit" id="send" class="btn btn-success">Send to Coach</button>
-        </form>
-    </script>
 
-
-
-  <script id="report-header-template" type="text/template">
+  <script id="report-view-template" type="text/template">
     <form id="reportForm">
-      <h4>Your Mood Report</h4>
       <p class="status"></p>
-      <div class="container"> 
+      <div class="container">
         <div class="row">
-          <h4>Report Type</h4>
-          <label class="radio-inline">
-            <input name="radioGroup" id="weekly" value="option1" type="radio" checked="">Weekly
-          </label>
-          <label class="radio-inline">
-            <input name="radioGroup" id="monthly" value="option1" type="radio">Monthly
-          </label>
-        </div> 
-        <br>
-        <div class="row">
-          <h4>Report Type</h4>
-          <div class="btn-group" data-toggle="buttons">
-            <label class="btn btn-default active">
-              <input type="radio" id="weekly2">Weekly
-            </label>
-            <label class="btn btn-default">
-              <input type="radio" id="monthly2">Monthly
-            </label>
+          <div class="centered-content">
+            <div class="btn-group" data-toggle="buttons">
+              <label id="weekly" class="btn btn-default">
+                <input type="radio">Weekly
+              </label>
+              <label id="monthly" class="btn btn-default">
+                <input type="radio">Monthly
+              </label>
+            </div>
           </div>
         </div>
-        </div> 
-        <br>
-        <div class="table-responsive">
-          <table class="table table-striped table-hover">
-            <thead>
-            <tr>
-              <th>Date/Time</th>
-                <th>Mood</th>
-                <th>Source</th>
-                <th>Thoughts</th>
-                <th>Level</th>
-            </tr>
-          </thead>
-          <tbody>
-    </script>
-
-    <script id="report-footer-template" type="text/template">
-            </tbody>
-          </table>
-        </div>
-        <br>
-        <button type="submit" id="send" class="btn btn-success">Send to Coach</button>
-      </form>
-    </script>
+      </div>
+      <div id="table-container"></div>
+      <br>
+      <div class="action-bar">
+        <button type="submit" id="send" class="btn btn-success" disabled>Send to Coach</button>
+      </div>
+    </form>
+  </script>
 
 
-    <script id="mood-template" type="text/template">
-      <form id="moodForm">
-        <div class="row-fluid">
-          <h4><i class="icon-plus-sign-alt"></i> How Are You Feeling?</h4>
-          <hr>
-          <p class="status"></p>
-          <div class="clearfix">
+  <script type="text/template" id="report-results-template">
+    <table class="table table-responsive table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Date/Time</th>
+          <th>Mood</th>
+          <th>Source</th>
+          <th>Thoughts</th>
+          <th>Level</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% _.each(moods, function(mood) { %>
+          <tr>
+            <td><%=mood.created_at%></td>
+            <td><%=mood.mood%></td>
+            <td><%=mood.internal_external%></td>
+            <td><%=mood.thoughts%></td>
+            <td><%=mood.energy_level%></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  </script>
 
-            <div class="form-group">
-              <label>Your Current State</label>
-              <input type="text" id="mood" name="mood" placeholder="Your Current State">
-            </div>
-
-            <div class="form-group">
-              <label>Origin</label>
-              <select id="origin" name="origin" class="selectpicker">
-                <option>Self Directed</option>
-                <option>Event Driven</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Energy Level</label>
-              <select id="energy-level" name="energy-level" class="selectpicker">
-                <option>1 Victim (Woe is me)</option>
-                <option>2 Combative (Im right youre wrong</option>
-                <option>3 Avoiding (Not dealing)</option>
-                <option>4 Caretaker (How can I help you? selfless)</option>
-                <option>5 Curosity (lemons into lemonaid)</option>
-                <option>6 Visionary (No judgement. Accepting what is)</option>
-                <option>7 Creating  (I am passion, unconditional love, transcendence)</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Your Thoughts</label>
-              <input type="text" id="thoughts" name="thoughts" placeholder="Your Thoughts">
-            </div>
-         </div>
-        </div>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
-    </script>
-
-    <script id="forgot-password-template" type="text/template">
-      <form id="forgot-password-form">
-        <div>
-          <h4 class=""><i class="icon-key" style="margin-bottom:10px;"></i>&nbsp;Password Reset</h4>
-          <p class="status"></p>
+  <script id="mood-template" type="text/template">
+    <form id="moodForm">
+      <div class="row-fluid">
+        <h4><i class="icon-plus-sign-alt"></i> How Are You Feeling?</h4>
+        <hr>
+        <p class="status"></p>
+        <div class="clearfix">
 
           <div class="form-group">
-            <input type="text" name="email" id="email" placeholder="Enter Your Email"><br>
+            <label>Your Current State</label>
+            <input type="text" id="mood" name="mood" placeholder="Your Current State">
           </div>
 
           <div class="form-group">
-            <button type="submit" class="btn btn-success" title="">Submit</button>
-            <button type="submit" id="cancel" class="btn btn-default" title="">Cancel</button> <br>
+            <label>Origin</label>
+            <select id="origin" name="origin" class="selectpicker">
+              <option>Self Directed</option>
+              <option>Event Driven</option>
+            </select>
           </div>
+
+          <div class="form-group">
+            <label>Energy Level</label>
+            <select id="energy-level" name="energy-level" class="selectpicker">
+              <option>1 Victim (Woe is me)</option>
+              <option>2 Combative (Im right youre wrong</option>
+              <option>3 Avoiding (Not dealing)</option>
+              <option>4 Caretaker (How can I help you? selfless)</option>
+              <option>5 Curosity (lemons into lemonaid)</option>
+              <option>6 Visionary (No judgement. Accepting what is)</option>
+              <option>7 Creating  (I am passion, unconditional love, transcendence)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Your Thoughts</label>
+            <input type="text" id="thoughts" name="thoughts" placeholder="Your Thoughts">
+          </div>
+       </div>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </script>
+
+  <script id="forgot-password-template" type="text/template">
+    <form id="forgot-password-form">
+      <div>
+        <h4 class=""><i class="icon-key" style="margin-bottom:10px;"></i>&nbsp;Password Reset</h4>
+        <p class="status"></p>
+
+        <div class="form-group">
+          <input type="text" name="email" id="email" placeholder="Enter Your Email"><br>
         </div>
-      </form>
-    </script>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" title="">Submit</button>
+          <button type="submit" id="cancel" class="btn btn-default" title="">Cancel</button> <br>
+        </div>
+      </div>
+    </form>
+  </script>
 
      <script id="signup-header-template" type="text/template">
       <form id="signup-form">
