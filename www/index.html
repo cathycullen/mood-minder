@@ -45,6 +45,7 @@
     <!-- helpers -->
     <script type="text/javascript" src="js/helpers/reminders.js"></script>
     <script type="text/javascript" src="js/helpers/settings.js"></script>
+    <script type="text/javascript" src="js/helpers/dates.js"></script>
     <!-- controllers -->
     <script type="text/javascript" src="js/controllers/moods.js"></script>
     <script type="text/javascript" src="js/controllers/coaches.js"></script>
@@ -103,76 +104,80 @@
     </script>
 
     <script id="login-template" type="text/template">
-      <form class="bs-example" id="login">
-        <p class="status"></p>
-        <div class="form-group">
-          <label for="inputEmail" >Email</label>
-          <input type="email" class="form-control" name="email" id="email" placeholder="Your Email Address">
-          <label for="inputPassword">Password</label>
-          <input type="password" class="form-control" name="password" id="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-success">Login</button>
-        </div>
-      </form>
+      <div class="hz-padding">
+        <form class="bs-example" id="login">
+          <p class="status"></p>
+          <div class="form-group">
+            <label for="inputEmail" >Email</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email Address">
+            <label for="inputPassword">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Login</button>
+          </div>
+        </form>
 
-      <div class="form-group">
-        <button type="submit" id="forgot-password" class="btn">Forgot Password</button>
-        <button type="submit" id="signup" class="btn">Register</button>
+        <div class="form-group">
+          <button type="submit" id="forgot-password" class="btn">Forgot Password</button>
+          <button type="submit" id="signup" class="btn">Register</button>
+        </div>
       </div>
     </script>
 
     <script id="reminder-schedule-template" type="text/template">
-      <h4>Edit Alert Reminder Times</h5>
-      <hr>
+      <div class="hz-padding">
+        <h4>Edit Alert Reminder Times</h5>
+        <hr>
 
-      <form id="reminderForm">
-        <p class="status"></p>
-          <div id="start">
-          <label for="select">Start Time:</label>
-          <select id="start_hour">
-            <% _.each([1,2,3,4,5,6,7,8,9,10,11,12], function(hour) { %>
-              <option <%= startHourIn12() === hour ? 'selected' : ''%>><%=hour%></option>
+        <form id="reminderForm">
+          <p class="status"></p>
+            <div id="start">
+            <label for="select">Start Time:</label>
+            <select id="start_hour">
+              <% _.each([1,2,3,4,5,6,7,8,9,10,11,12], function(hour) { %>
+                <option <%= startHourIn12() === hour ? 'selected' : ''%>><%=hour%></option>
 
-            <% }); %>
-          </select>
-          <select id="start_min">
-            <% _.each(["00", "15", "30", "45"], function(minutes) { %>
-              <option <%= startMinutes === parseInt(minutes) ? 'selected' : ''%>><%=minutes%></option>
+              <% }); %>
+            </select>
+            <select id="start_min">
+              <% _.each(["00", "15", "30", "45"], function(minutes) { %>
+                <option <%= startMinutes === parseInt(minutes) ? 'selected' : ''%>><%=minutes%></option>
 
-            <% }); %>
-          </select>
-          <select id="start_am_pm">
-            <option <%= startTimeMeridiem() === "am" ? 'selected' : ''%>>am</option>
-            <option <%= startTimeMeridiem() === "pm" ? 'selected' : ''%>>pm</option>
-          </select>
-        </div>
+              <% }); %>
+            </select>
+            <select id="start_am_pm">
+              <option <%= startTimeMeridiem() === "am" ? 'selected' : ''%>>am</option>
+              <option <%= startTimeMeridiem() === "pm" ? 'selected' : ''%>>pm</option>
+            </select>
+          </div>
 
-        <div id="end">
-          <label for="select">End Time:&nbsp&nbsp</label>
-          <select id="end_hour">
-            <% _.each([1,2,3,4,5,6,7,8,9,10,11,12], function(hour) { %>
-              <option <%= endHourIn12() === hour ? 'selected' : ''%>><%=hour%></option>
+          <div id="end">
+            <label for="select">End Time:&nbsp&nbsp</label>
+            <select id="end_hour">
+              <% _.each([1,2,3,4,5,6,7,8,9,10,11,12], function(hour) { %>
+                <option <%= endHourIn12() === hour ? 'selected' : ''%>><%=hour%></option>
 
-            <% }); %>
-          </select>
-          <select id="end_min">
-            <% _.each(["00", "15", "30", "45"], function(minutes) { %>
-              <option <%= endMinutes === parseInt(minutes) ? 'selected' : ''%>><%=minutes%></option>
+              <% }); %>
+            </select>
+            <select id="end_min">
+              <% _.each(["00", "15", "30", "45"], function(minutes) { %>
+                <option <%= endMinutes === parseInt(minutes) ? 'selected' : ''%>><%=minutes%></option>
 
-            <% }); %>
-          </select>
-          <select id="end_am_pm">
-            <option <%= endTimeMeridiem() === "am" ? 'selected' : ''%>>am</option>
-            <option <%= endTimeMeridiem() === "pm" ? 'selected' : ''%>>pm</option>
-          </select>
-        </div>
-        <br>
-        <div class="form-group">
-          <button type="submit" class="btn btn-success">Submit</button>
-          <button id="cancel" class="btn btn-default">Cancel</button>
-        </div>
-      </form>
+              <% }); %>
+            </select>
+            <select id="end_am_pm">
+              <option <%= endTimeMeridiem() === "am" ? 'selected' : ''%>>am</option>
+              <option <%= endTimeMeridiem() === "pm" ? 'selected' : ''%>>pm</option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group">
+            <button type="submit" class="btn btn-success">Submit</button>
+            <button id="cancel" class="btn btn-default">Cancel</button>
+          </div>
+        </form>
+      </div>
     </script>
 
 
@@ -193,7 +198,7 @@
           </div>
         </div>
       </div>
-      <div id="table-container"></div>
+      <div id="report-container"></div>
       <br>
       <div class="action-bar">
         <button type="submit" id="send" class="btn btn-success" disabled>Send to Coach</button>
@@ -203,32 +208,28 @@
 
 
   <script type="text/template" id="report-results-template">
-    <table class="table table-responsive table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Date/Time</th>
-          <th>Mood</th>
-          <th>Source</th>
-          <th>Thoughts</th>
-          <th>Level</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% _.each(moods, function(mood) { %>
-          <tr>
-            <td><%=mood.created_at%></td>
-            <td><%=mood.mood%></td>
-            <td><%=mood.internal_external%></td>
-            <td><%=mood.thoughts%></td>
-            <td><%=mood.energy_level%></td>
-          </tr>
-        <% }); %>
-      </tbody>
-    </table>
+    <% _.each(moods, function(mood) { %>
+      <div class="mood-record">
+        <div class="header">
+          <span class="mood"><%=mood.mood%></span>
+          <span class="source"><%=mood.internal_external%></span>
+        </div>
+
+        <p class="energy">energy level: <%=mood.energy_level%></p>
+
+        <% if(mood.thoughts) { %>
+          <p class="thoughts"><%=mood.thoughts%></p>
+        <% } %>
+
+        <p class="time">
+          <span><%=DateFormatter.short(mood.created_at)%></span>
+        </p>
+      </div>
+    <% }); %>
   </script>
 
   <script id="mood-template" type="text/template">
-    <form id="moodForm">
+    <form id="moodForm" class="hz-padding">
       <div class="row-fluid">
         <h4><i class="icon-plus-sign-alt"></i> How Are You Feeling?</h4>
         <hr>
@@ -272,7 +273,7 @@
   </script>
 
   <script id="forgot-password-template" type="text/template">
-    <form id="forgot-password-form">
+    <form class="hz-padding" id="forgot-password-form">
       <div>
         <h4 class=""><i class="icon-key" style="margin-bottom:10px;"></i>&nbsp;Password Reset</h4>
         <p class="status"></p>
@@ -289,41 +290,40 @@
     </form>
   </script>
 
-     <script id="signup-header-template" type="text/template">
-      <form id="signup-form">
-        <h4><i class="icon-user" style="margin-bottom:10px;"></i> Signup for Mood Minder</h4>
-        <p class="status"></p>
+  <script id="signup-header-template" type="text/template">
+    <form class="hz-padding" id="signup-form">
+      <p class="status"></p>
+      <div class="form-group">
+        <p>
+           <input type="text" name="name" id="name" placeholder="Name">
+        </p>
+        <p>
+           <input type="text" name="email" id="email" placeholder="Email">
+        </p>
+        <p>
+          <input type="password" name="password" id="password" placeholder="Password">
+        </p>
+        <p>
+          <input type="password" name="verify-password" id="verify-password" placeholder="Verify Password">
+            </select>
+        </p>
+        <p>
         <div class="form-group">
-          <p>
-             <input type="text" name="name" id="name" placeholder="Name">
-          </p>
-          <p>
-             <input type="text" name="email" id="email" placeholder="Email">
-          </p>
-          <p>
-            <input type="password" name="password" id="password" placeholder="Password">
-          </p>
-          <p>
-            <input type="password" name="verify-password" id="verify-password" placeholder="Verify Password">
-              </select>
-          </p>
-          <p>
-          <div class="form-group">
-              <label>Coach</label>
-              <select id="coach" name="coach" class="selectpicker">
-      </script>
+            <label>Coach</label>
+            <select id="coach" name="coach" class="selectpicker">
+  </script>
 
 
-     <script id="signup-footer-template" type="text/template">
-              </select>
-          </p>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-success">Submit</button>
-          <button id="cancel" class="btn btn-default">Cancel</button>
-        </div>
-      </form>
-    </script>
+  <script id="signup-footer-template" type="text/template">
+          </select>
+        </p>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success">Submit</button>
+        <button id="cancel" class="btn btn-default">Cancel</button>
+      </div>
+    </form>
+  </script>
 
   </body>
 </html>

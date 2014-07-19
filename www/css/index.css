@@ -45,7 +45,7 @@ body {
     padding:0px;
     text-transform:uppercase;
     width:100%;
-  background-color: white;
+    background-color: white;
 }
 
 /* Portrait layout (default) */
@@ -72,6 +72,17 @@ body {
     }
 }
 
+
+.container {
+  padding: 0px;
+}
+
+.hz-padding {
+  padding-left: 15px;
+  padding-right: 15px;
+
+}
+
 #energy-level {
   width: 100%;
 }
@@ -84,17 +95,56 @@ body {
   text-align: center;
 }
 
-#table-container {
+#report-container {
   margin-top: 1em;
+  padding-bottom: 40px;
+  text-transform: none;
+}
+
+#report-container .mood-record {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  padding-left: 15px;
+  padding-right: 15px;
+  position: relative;
+}
+
+#report-container .mood-record:nth-child(odd) {
+  background-color: #efefef;
+}
+
+#report-container .header {
+  font-size: 1.4em;
+  vertical-align: bottom;
+}
+
+#report-container .source {
+  color: #999;
+  font-size: .8em;
+  text-transform: lowercase;
+}
+
+#report-container .time {
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+  font-size: .8em;
+  color: #999;
+}
+
+#report-container .thoughts {
+  font-style: italic;
+  padding-left: 10%;
 }
 
 .action-bar {
   position: fixed;
   bottom: 0;
   left: 0;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 5px;
+  padding: 5px;
+  padding-top: 10px;
+  width: 100%;
+  background: white;
 }
 
 @keyframes fade {

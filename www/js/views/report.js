@@ -7,12 +7,10 @@ var ReportView = function() {
 
   this.el.find("#weekly").on('click',function(e){
     this.weeklyReport();
-    console.log("A weekly report type was chosen");
   }.bind(this));
 
   this.el.find("#monthly").on('click',function(e){
     this.monthlyReport();
-    console.log("A monthly report type was chosen");
   }.bind(this));
 };
 
@@ -38,7 +36,7 @@ ReportView.prototype.weeklyReport = function() {
 
   request.done(function(moods) {
     this.el.find("#send").removeAttr('disabled');
-    this.el.find("#table-container").html(this.tableTemplate({moods: moods}));
+    this.el.find("#report-container").html(this.tableTemplate({moods: moods}));
   }.bind(this));
 
   request.fail(function(resp) {
@@ -51,7 +49,7 @@ ReportView.prototype.monthlyReport = function() {
 
   request.done(function(moods) {
     this.el.find("#send").removeAttr('disabled');
-    this.el.find("#table-container").html(this.tableTemplate({moods: moods}));
+    this.el.find("#report-container").html(this.tableTemplate({moods: moods}));
   }.bind(this));
 
   request.fail(function(resp) {
