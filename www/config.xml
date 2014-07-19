@@ -3,16 +3,16 @@
 <!-- config.xml reference: https://build.phonegap.com/docs/config-xml -->
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
-        id        = "com.phonegap.helloworld"
+        id        = "com.jma.moodminder"
         version   = "1.0.0">
 
     <name>Mood Minder</name>
 
     <description>
-      Collect mood states.
+      Record your mood.
     </description>
 
-    <author href="http://phonegap.com" email="support@phonegap.com">
+    <author href="http://www.jodymichael.com" email="cathy@softwareoptions.com">
       JMA
     </author>
 
@@ -31,9 +31,9 @@
 
     <!-- Customize your app and platform with the preference element. -->
     <!-- <preference name="phonegap-version"      value="3.4.0" /> -->      <!-- all: current version of PhoneGap -->
-    <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
-    <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
-    <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
+    <preference name="orientation"                value="portrait" />        <!-- all: default means both landscape and portrait are enabled -->
+    <preference name="target-device"              value="handset" />      <!-- all: possible values handset, tablet, or universal -->
+    <preference name="fullscreen"                 value="false" />           <!-- all: hides the status bar at the top of the screen -->
     <preference name="webviewbounce"              value="true" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
     <preference name="prerendered-icon"           value="true" />           <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
     <preference name="stay-in-webview"            value="false" />          <!-- ios: external links should open in the default browser, 'true' would use the webview the app lives in -->
@@ -54,8 +54,9 @@
     <gap:plugin name="de.appplant.cordova.plugin.local-notification" />
 
     <!-- Define app icon for each platform. -->
-    <icon src="icon.png" />
-    
+    <icon src="res/icon/icon.png" />
+
+
     <!-- Define app splash screen for each platform. -->
     <gap:splash src="res/screen/ios/screen-iphone-portrait.png"    gap:platform="ios"     width="320" height="480" />
     <gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png" gap:platform="ios"     width="640" height="960" />
@@ -71,11 +72,6 @@
         Otherwise, you can specify specific domains:
     -->
     <access origin="http://localhost*"/> <!-- allow local pages -->
-    <access origin="http://jma-mood-server.herokuapp.com/*"/> <!-- allow local pages -->
-    <!--
-        <access origin="http://phonegap.com" />                    - allow any secure requests to http://phonegap.com/
-        <access origin="http://phonegap.com" subdomains="true" />  - same as above, but including subdomains, such as http://build.phonegap.com/
-        <access origin="http://phonegap.com" browserOnly="true" /> - only allows http://phonegap.com to be opened by the child browser.
-    -->
+    <access origin="https://jma-mood-server.herokuapp.com/*"/> <!-- jma server -->
 
 </widget>
