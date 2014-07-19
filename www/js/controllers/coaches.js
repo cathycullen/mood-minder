@@ -7,8 +7,10 @@ CoachesController = {
       data: {token: LocalSettings.getCurrentUserToken()}
     });
 
-    request.success(function(coaches) {
+    request.done(function(coaches) {
       window.allCoaches = coaches;
     });
+
+    return request;
   }
 };

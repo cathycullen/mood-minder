@@ -64,6 +64,7 @@ var app = {
       if(e) {
         e.preventDefault();
       }
+
       // Show the login view
       var view = new LoginView();
       view.render();
@@ -87,21 +88,26 @@ var app = {
       view.monthlyReport();
     },
 
-     loadCoaches: function(e) {
-      if(e) {
-        e.preventDefault();
-      }
-
-      CoachesController.load();
-    },
-
     signup: function(e) {
       if(e) {
         e.preventDefault();
       }
-      // Show the login view
-      var view = new SignupView();
-      view.render();
+
+      var deferred;
+      if(window.allCoaches) {
+        deferred = jQuery.Deferred();
+        // since we don't need to make a request to load moods (they're already
+        // present locally), resolve this deferred right away
+        deferred.resolve();
+      } else {
+        deferred = CoachesController.load();
+      }
+
+      deferred.done(function() {
+        // Show the login view
+        var view = new SignupView();
+        view.render();
+      });
     },
 
     report: function(e) {
@@ -120,10 +126,6 @@ var app = {
       var request = SessionsController.determineLoggedInStatus();
 
       request.done(function(resp) {
-        // This is hacky and will be replaced by local html5 local storage
-        // goodness, so we don't depend on the server to tell us if we're logged
-        // in or not
-        this.loadCoaches();
         SessionsController.loggedIn = true;
         this.postLogin();
       }.bind(this));
