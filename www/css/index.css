@@ -137,6 +137,10 @@ body {
   padding-left: 10%;
 }
 
+.no-case {
+  text-transform: none;
+}
+
 .action-bar {
   position: fixed;
   bottom: 0;
@@ -145,6 +149,16 @@ body {
   padding-top: 10px;
   width: 100%;
   background: white;
+}
+
+#complete {
+  text-align: center;
+  margin-top: 30%;
+  display: none;
+}
+
+#complete p {
+  font-size: 1.3em;
 }
 
 @keyframes fade {

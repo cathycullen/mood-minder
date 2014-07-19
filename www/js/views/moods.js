@@ -3,6 +3,7 @@ var MoodView = function() {
   this.el = $(this.template);
 
   this.el.submit(this.saveMood.bind(this));
+  this.el.find("#enter-another").on('click', this.showForm.bind(this));
 };
 
 MoodView.prototype.render = function() {
@@ -39,21 +40,36 @@ MoodView.prototype.render = function() {
   }.bind(this));
 };
 
+MoodView.prototype.showForm = function(e) {
+  e.preventDefault();
+  this.el.find("form")[0].reset();
+
+  this.el.find("#complete").hide();
+  this.el.find("form").show();
+};
+
 MoodView.prototype.saveMood = function(e) {
   e.preventDefault();
+
+  this.el.find("button[type='submit']").attr('disabled', '');
 
   var request = MoodsController.save(this.el.find("#mood").val(),
                                      this.el.find("#origin").val(),
                                      this.el.find("#energy-level").val(),
                                      this.el.find("#thoughts").val());
   request.done(function(resp) {
-    this.el[0].reset();
+    this.el.find("form")[0].reset();
 
-    this.el.find(".status").text("Thanks! Your mood has been saved.");
+    this.el.find("form").hide();
+    this.el.find("#complete").show();
   }.bind(this));
 
   request.fail(function(resp) {
     this.el.find(".status").text("Unable to save your mood. Please try again.");
+  }.bind(this));
+
+  request.always(function() {
+    this.el.find("button[type='submit']").removeAttr('disabled');
   }.bind(this));
 };
 
