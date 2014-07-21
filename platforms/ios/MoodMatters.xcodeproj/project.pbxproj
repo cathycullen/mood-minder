@@ -40,6 +40,7 @@
 		D4A0D8761607E02300AEF8BB /* Default-568h@2x~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = D4A0D8751607E02300AEF8BB /* Default-568h@2x~iphone.png */; };
 		9EC0A894DBE74C00A0CBEEBA /* CDVDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = B96E4EBC7AA94CABB32C40C7 /* CDVDevice.m */; };
 		E9EE91A6967B44D89D574974 /* APPLocalNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D46F93B52F443D8B77C2BD7 /* APPLocalNotification.m */; };
+		90A2C42EFA18422CB3956D26 /* CDVStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 12A81142FCEA4FF5B028ECDE /* CDVStatusBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -108,6 +109,8 @@
 		192A2DCD525D4B9CA6C3A3D6 /* CDVDevice.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVDevice.h"; path = "org.apache.cordova.device/CDVDevice.h"; sourceTree = "<group>"; fileEncoding = 4; };
 		5D46F93B52F443D8B77C2BD7 /* APPLocalNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "APPLocalNotification.m"; path = "de.appplant.cordova.plugin.local-notification/APPLocalNotification.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		F36CB902423A478A90386C71 /* APPLocalNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "APPLocalNotification.h"; path = "de.appplant.cordova.plugin.local-notification/APPLocalNotification.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		12A81142FCEA4FF5B028ECDE /* CDVStatusBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVStatusBar.m"; path = "org.apache.cordova.statusbar/CDVStatusBar.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		B13FB5066E394F9EB2E7FA1A /* CDVStatusBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVStatusBar.h"; path = "org.apache.cordova.statusbar/CDVStatusBar.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -232,6 +235,8 @@
 				192A2DCD525D4B9CA6C3A3D6 /* CDVDevice.h */,
 				5D46F93B52F443D8B77C2BD7 /* APPLocalNotification.m */,
 				F36CB902423A478A90386C71 /* APPLocalNotification.h */,
+				12A81142FCEA4FF5B028ECDE /* CDVStatusBar.m */,
+				B13FB5066E394F9EB2E7FA1A /* CDVStatusBar.h */,
 			);
 			name = Plugins;
 			path = "MoodMatters/Plugins";
@@ -428,6 +433,7 @@
 				302D95F114D2391D003F00A1 /* MainViewController.m in Sources */,
 				9EC0A894DBE74C00A0CBEEBA /* CDVDevice.m in Sources */,
 				E9EE91A6967B44D89D574974 /* APPLocalNotification.m in Sources */,
+				90A2C42EFA18422CB3956D26 /* CDVStatusBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
