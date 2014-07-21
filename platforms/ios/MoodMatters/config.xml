@@ -33,6 +33,8 @@
     <author email="cathy@softwareoptions.com" href="http://www.jodymichael.com">
         JMA
     </author>
+    <preference name="Orientation" value="portrait" />
+    <preference name="DisallowOverscroll" value="true" />
     <content src="index.html" />
     <access origin="http://localhost*" />
     <access origin="https://jma-mood-server.herokuapp.com/*" />

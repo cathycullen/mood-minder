@@ -8,6 +8,10 @@
         JMA
     </author>
 
+    <preference name="Orientation" value="portrait" />
+    <preference name="DisallowOverscroll" value="true"/>
+
+
     <content src="index.html" />
     <access origin="http://localhost*"/> <!-- allow local pages -->
     <access origin="https://jma-mood-server.herokuapp.com/*"/> <!-- jma server -->
