@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.jma.mood-matters" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MoodMatters</name>
+    <description>
+      Record your mood.
+    </description>
+    <author href="http://www.jodymichael.com" email="cathy@softwareoptions.com">
+        JMA
+    </author>
+
+    <content src="index.html" />
+    <access origin="http://localhost*"/> <!-- allow local pages -->
+    <access origin="https://jma-mood-server.herokuapp.com/*"/> <!-- jma server -->
+</widget>
