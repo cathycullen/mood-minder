@@ -10,7 +10,7 @@ SessionsController = {
   },
 
   isLoggedIn: function() {
-    return this.loggedIn;
+    return LocalSettings.getCurrentUserToken() != undefined && LocalSettings.getCurrentUserToken() != null && LocalSettings.getCurrentUserToken() != "";
   },
 
   determineLoggedInStatus: function() {

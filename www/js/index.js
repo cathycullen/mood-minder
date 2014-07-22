@@ -25,6 +25,9 @@ var app = {
     // Bind Event Listeners
     //
     bindEvents: function() {
+      window.addEventListener("offline", this.offline.bind(this));
+      window.addEventListener("online", this.online.bind(this));
+
       $(document).ready(function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
 
@@ -44,6 +47,15 @@ var app = {
       this.navBarView.render();
       // Show the mood entry view
       var view = new MoodView();
+      view.render();
+    },
+
+    online: function() {
+      this.viewInit();
+    },
+
+    offline: function() {
+      var view = new OfflineView();
       view.render();
     },
 
@@ -107,6 +119,18 @@ var app = {
       view.render();
     },
 
+    viewInit: function() {
+      if(navigator.onLine) {
+        if(SessionsController.isLoggedIn()) {
+          this.postLogin();
+        } else {
+          this.signup();
+        }
+      } else {
+        app.offline();
+      }
+    },
+
     onDeviceReady: function() {
       // Prevent 300ms delay when clicking on a mobile device
       FastClick.attach(document.body);
@@ -114,18 +138,7 @@ var app = {
       this.navBarView = new NavBarView();
       this.navBarView.render();
 
-      var request = SessionsController.determineLoggedInStatus();
-
-      request.done(function(resp) {
-        SessionsController.loggedIn = true;
-        this.postLogin();
-      }.bind(this));
-
-      request.fail(function() {
-        SessionsController.loggedIn = false;
-        this.signup();
-      }.bind(this));
-
+      this.viewInit();
     },
 
     /**

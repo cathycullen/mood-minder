@@ -20,12 +20,11 @@ LoginView.prototype.loginRequest = function(e) {
   request.done(function(user) {
     window.currentUser = user;
     LocalSettings.setCurrentUserToken(user.token);
-    SessionsController.loggedIn = true;
     app.postLogin();
   }.bind(this));
 
   request.fail(function(jqxhr) {
-    SessionsController.loggedIn = false;
+    LocalSettings.setCurrentUserToken(null);
     this.el.find(".status").text("Invalid Username or Password");
   }.bind(this));
 };

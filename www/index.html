@@ -54,6 +54,7 @@
     <script type="text/javascript" src="js/controllers/reports.js"></script>
     <!-- views -->
     <script type="text/javascript" src="js/views/debugger.js"></script>
+    <script type="text/javascript" src="js/views/offline.js"></script>
     <script type="text/javascript" src="js/views/forgot_password.js"></script>
     <script type="text/javascript" src="js/views/login.js"></script>
     <script type="text/javascript" src="js/views/moods.js"></script>
@@ -67,9 +68,9 @@
     <script type="text/javascript">
       // all controllers use window.apiURL
       // production
-      //window.apiURL = "https://jma-mood-server.herokuapp.com/"
+      window.apiURL = "https://jma-mood-server.herokuapp.com/"
       // development
-      window.apiURL = "http://localhost:9393/"
+      //window.apiURL = "http://localhost:9393/"
 
       app.initialize();
     </script>
@@ -122,6 +123,26 @@
             <li><%=m%></li>
           <% }); %>
         </ul>
+      </div>
+    </script>
+
+    <script id="offline-template" type="text/template">
+      <div class="hz-padding">
+        <div class="logo">
+          <img src="img/logo.png"/>
+        </div>
+        <br/>
+        <h4>Network connection offline.</h4>
+        <br/>
+
+        <p class="no-case">Mood Matters requires an network connection</p>
+
+        <p class="no-case">Please ensure your phone isn't in airplane mode or disconnected from the network for any other
+        reason</p>
+        <br/>
+        <br/>
+
+        <button id="reconnect" class="btn btn-success">Reconnect</button>
       </div>
     </script>
 
@@ -341,7 +362,7 @@
       <div class="logo">
         <img src="img/logo.png"/>
       </div>
-      <h4 class="no-case">Welcome to Mood Matters?</h4>
+      <h4 class="no-case">Welcome to Mood Matters</h4>
 
       <form id="signup-form">
         <p class="status"></p>
