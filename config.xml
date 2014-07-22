@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.jma.mood-matters" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>MoodMatters</name>
+    <name>Mood Matters</name>
     <description>
       Record your mood.
     </description>
@@ -11,8 +11,6 @@
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="StatusBarOverlaysWebView" value="false" />
-
-
 
     <content src="index.html" />
     <access origin="http://localhost*"/> <!-- allow local pages -->
