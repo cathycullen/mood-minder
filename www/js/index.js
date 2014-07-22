@@ -40,6 +40,7 @@ var app = {
     },
 
     postLogin: function() {
+      $("nav").show();
       this.navBarView.render();
       // Show the mood entry view
       var view = new MoodView();
@@ -107,6 +108,9 @@ var app = {
     },
 
     onDeviceReady: function() {
+      // Prevent 300ms delay when clicking on a mobile device
+      FastClick.attach(document.body);
+
       this.navBarView = new NavBarView();
       this.navBarView.render();
 
@@ -119,7 +123,7 @@ var app = {
 
       request.fail(function() {
         SessionsController.loggedIn = false;
-        this.loginForm();
+        this.signup();
       }.bind(this));
 
     },

@@ -193,6 +193,22 @@ body {
   width: 30%;
 }
 
+nav {
+  display: none;
+}
+
+.login-prompt {
+  padding-top: 15px;
+  margin-top: 35px;
+  border-top: solid 2px #ccc;
+  text-transform: none;
+
+}
+
+#reportForm .status {
+  padding-left: 10px;
+}
+
 .fade-in {
   animation-duration: 0.5s;
   animation-name: fade;

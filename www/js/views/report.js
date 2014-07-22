@@ -21,13 +21,18 @@ ReportView.prototype.render = function() {
 ReportView.prototype.sendReport = function(e) {
   e.preventDefault();
   var request = ReportsController.send();
+  this.el.find("#send").attr('disabled', '');
 
   request.done(function(user) {
-    this.el.find(".status").text("MoodMinder report has been sent.");
+    this.el.find(".status").text("Report has been sent.");
   }.bind(this));
 
   request.fail(function(resp) {
-    this.el.find(".status").text("Unable to send MoodMinder report.");
+    this.el.find(".status").text("Unable to send report.");
+  }.bind(this));
+
+  request.always(function() {
+    this.el.find("#send").removeAttr('disabled');
   }.bind(this));
 };
 
@@ -40,7 +45,7 @@ ReportView.prototype.weeklyReport = function() {
   }.bind(this));
 
   request.fail(function(resp) {
-    this.el.find(".status").text("Unable to load moods from server.");
+    this.el.find(".status").text("Unable to load moods.");
   }.bind(this));
 };
 
@@ -53,7 +58,7 @@ ReportView.prototype.monthlyReport = function() {
   }.bind(this));
 
   request.fail(function(resp) {
-    this.el.find(".status").text("Unable to load moods from server.");
+    this.el.find(".status").text("Unable to load moods.");
   }.bind(this));
 };
 
