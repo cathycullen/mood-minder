@@ -23,7 +23,7 @@ var Reminders = {
       window.plugin.notification.local.add({
         id:      "scheduled-" + i + "-" + DateFormatter.time(time),
         title:   'Reminder',
-        message: 'Time to record your mood. ' + i + " " + DateFormatter.time(time),
+        message: 'Time to record your mood.',
         repeat:  'daily',
         date:    time
       });

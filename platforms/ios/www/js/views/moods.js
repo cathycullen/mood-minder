@@ -37,7 +37,7 @@ MoodView.prototype.render = function() {
                           source: this.substringMatcher(moodStateStrings),
                           templates: {
                             suggestion: function(d) {
-                              return '<p class="needsclick">TEST'+d.value+'</p>';
+                              return '<p class="needsclick">' + d.value + '</p>';
                             }
                           }
                          });
