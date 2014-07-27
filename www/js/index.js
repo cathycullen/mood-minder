@@ -29,7 +29,7 @@ var app = {
       window.addEventListener("online", this.online.bind(this));
 
       $(document).ready(function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+        this.onDeviceReady();
 
         // NOTE: The following code appears to be buggy. Firing before Ripple
         // has a chance to load. Disabled for now. If you don't use Ripple at
