@@ -34,8 +34,14 @@ MoodView.prototype.render = function() {
                          },
                          {name: 'mood_states',
                           displayKey: 'value',
-                          source: this.substringMatcher(moodStateStrings)
+                          source: this.substringMatcher(moodStateStrings),
+                          templates: {
+                            suggestion: function(d) {
+                              return '<p class="needsclick">TEST'+d.value+'</p>';
+                            }
+                          }
                          });
+
     $("#content").html(this.el);
   }.bind(this));
 };
