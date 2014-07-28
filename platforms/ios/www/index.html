@@ -5,6 +5,13 @@
     <meta name="format-detection" content="telephone=no" />
     <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+
+
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+
     <link href="css/vendor/bootstrap.min.css" rel="stylesheet">
     <link href="css/vendor/font-awesome.min.css" type="text/css" rel="stylesheet">
     <link href="css/vendor/typeahead.css" type="text/css" rel="stylesheet">
@@ -33,7 +40,6 @@
 
 
     <!-- Vendor JS -->
-    <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/vendor/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/vendor/typeahead.bundle.js"></script>
     <script type="text/javascript" src="js/vendor/bootstrap.min.js"></script>
@@ -92,7 +98,6 @@
             <% if(loggedIn) { %>
               <li><a id="mood">Report a Mood</a></li>
               <li><a id="report">Reporting</a></li>
-              <li><a id="reminder-schedule">Reminder Schedule</a></li>
             <% } %>
 
             <% if(!loggedIn) { %>
@@ -100,8 +105,6 @@
               <li><a id="signup" href="#">Signup</a></li>
               <li><a id="forgot-password" href="#">Forgot Password</a></li>
             <% } %>
-
-            <li><a id="debugger">Debugger</a></li>
 
           </ul>
         </div><!-- /.navbar-collapse -->
@@ -311,7 +314,7 @@
             </div>
 
             <div class="form-group">
-              <label>Energy Level</label>
+              <label>Energy Level</label><br/>
               <select id="energy-level" name="energy-level" class="selectpicker">
                 <option>1 Victim</option>
                 <option>2 Conflict</option>

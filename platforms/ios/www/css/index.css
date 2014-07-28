@@ -94,6 +94,7 @@ button {
 
 #energy-level {
   width: 100%;
+  max-width: 400px;
 }
 
 .navbar {
@@ -176,8 +177,10 @@ button {
 #moodForm {
   margin-top: 2em;
 }
+
 #thoughts {
   height: 4em;
+  max-width: 400px;
 }
 
 #reminderForm {
