@@ -1,0 +1,22 @@
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes.dex : \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/com/jma/mood_matters/BuildConfig.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/com/jma/mood_matters/MoodMatters.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/com/jma/mood_matters/R$attr.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/com/jma/mood_matters/R$drawable.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/com/jma/mood_matters/R$string.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/com/jma/mood_matters/R$xml.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/com/jma/mood_matters/R.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$1.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$2.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$3.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification$4.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/LocalNotification.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Options.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Receiver.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/ReceiverActivity.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/de/appplant/cordova/plugin/localnotification/Restore.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/org/apache/cordova/statusbar/StatusBar$1.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/org/apache/cordova/statusbar/StatusBar$2.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/classes/org/apache/cordova/statusbar/StatusBar.class \
+/Users/cathycullen/src/mood-minder/platforms/android/ant-build/dexedLibs/classes-0e6dbedded39c9d75836c376e1144d43.jar \
