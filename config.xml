@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.jma.mood-matters" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.jma.mood-matters" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
     <name>Mood Matters</name>
     <description>
       Record your mood.
@@ -11,6 +11,10 @@
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true"/>
     <preference name="StatusBarOverlaysWebView" value="false" />
+
+    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.7.4" />
+    <gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
+
 
     <content src="index.html" />
     <access origin="http://localhost*"/> <!-- allow local pages -->

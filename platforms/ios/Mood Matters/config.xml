@@ -42,6 +42,8 @@
     <preference name="Orientation" value="portrait" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="StatusBarOverlaysWebView" value="false" />
+    <gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.7.4" />
+    <gap:plugin name="org.apache.cordova.statusbar" version="0.1.4" />
     <content src="index.html" />
     <access origin="http://localhost*" />
     <access origin="https://jma-mood-server.herokuapp.com/*" />
